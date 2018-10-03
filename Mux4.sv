@@ -1,5 +1,5 @@
-module Mux4(Control, In1, In2, In3, In4, Out);
-	input logic Control[3:0], logic [63:0]In1, logic [63:0]In2;
+module SignalExtend(Inst, Out);
+	input logic [3:0]Control, logic [63:0]In1, logic [63:0]In2;
 	output logic [63:0]Out;
 	always_comb begin
 		if(Control == 3'b000) 
