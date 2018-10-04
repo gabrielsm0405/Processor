@@ -1,0 +1,3 @@
+module ShiftLeft(input logic [63:0] In, output logic [63:0] Out);
+	Out <= (1 << In);
+endmodule 

@@ -181,7 +181,7 @@ module unidadeProcessamento_test(input logic clk);
 	);
 
 	SignalExtend SignExtendModule(
-		.Inst(Instr31_0),
+		.In(Instr31_0),
 		.Out(SignalExtendOut)
 	);
 
