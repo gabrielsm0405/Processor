@@ -2,7 +2,7 @@
 -- Title		: Memória da CPU
 -- Project		: CPU 
 --------------------------------------------------------------------------------
--- File			: memoria64.sv
+-- File			: memoria32.sv
 -- Author		: Lucas Fernando da Silva Cambuim <lfsc@cin.ufpe.br>
 -- Organization : Universidade Federal de Pernambuco
 -- Created		: 20/09/2018
@@ -13,7 +13,7 @@
 -- Targets		: 
 -- Dependency	: 
 --------------------------------------------------------------------------------
--- Description	: Entidade responsável pela leitura e escrita em memória (dados de 64 bits).
+-- Description	: Entidade responsável pela leitura e escrita em memória de INSTRUÇÃO (dados de 32 bits).
 --------------------------------------------------------------------------------
 -- Copyright (c) notice
 --		Universidade Federal de Pernambuco (UFPE).
@@ -28,7 +28,7 @@ module Memoria32
      input wire [31:0]waddress,
      input wire Clk,         
      input wire [31:0]Datain,
-     input wire	[31:0]Dataout,
+     output wire [31:0]Dataout,
      input wire Wr
     );
     
