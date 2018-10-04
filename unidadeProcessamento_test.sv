@@ -1,25 +1,22 @@
-module unidadeProcessamento(
-	input logic 	clk, 
-	input logic 	PCSrc, 
-	input logic 	[2:0] ALUFunct, 
-	input logic 	[1:0] ALUSrcB,
-	input logic 	PCWrite,
-	input logic 	ALUSrcA, 
-	input logic 	LoadRegA, 
-	input logic 	LoadRegB, 
-	input logic 	LoadALUOut,
-	input logic 	WriteReg, 
-	input logic 	[1:0]MemToReg,
-	input logic 	LoadIR, 
-	input logic 	IMemWrite, 
-	input logic 	DMemWrite, 
-	input logic 	LoadMDR, 
-	input logic 	Reset,
-	input logic		BranchOp,
-	input logic		PCWriteCond,
-	output logic 	[31:0] inst
-);
-
+module unidadeProcessamento(input logic clk);
+	logic 	PCSrc; 
+	logic 	[2:0] ALUFunct; 
+	logic 	[1:0] ALUSrcB;
+	logic 	PCWrite;
+	logic 	ALUSrcA; 
+	logic 	LoadRegA; 
+	logic 	LoadRegB; 
+	logic 	LoadALUOut;
+	logic 	WriteReg; 
+	logic 	[1:0]MemToReg;
+	logic 	LoadIR; 
+	logic 	IMemWrite; 
+	logic 	DMemWrite; 
+	logic 	LoadMDR; 
+	logic 	Reset;
+	logic		BranchOp;
+	logic		PCWriteCond;
+	logic [31:0] inst;
 	logic [63:0]	PCIn, PCOut;
 	logic [31:0] 	IMemOut;
 	logic [4:0]  	Instr19_15;
@@ -41,6 +38,28 @@ module unidadeProcessamento(
 	logic [63:0]	MemDataRegOut;
 	logic [63:0]	BranchOpOut;
 	logic 			LoadPC;
+
+	unidadeControle UC(
+		.clk(clk),
+		.PCSrc(PCSrc),
+		.ALUFunct(ALUFunct),
+		.ALUSrcB(ALUSrcB),
+		.PCWrite(PCWrite),
+		.ALUSrcA(ALUSrcA),
+		.LoadRegA(LoadRegA),
+		.LoadRegB(LoadRegB),
+		.LoadALUOut(LoadALUOut),
+		.WriteReg(WriteReg),
+		.MemToReg(MemToReg),
+		.LoadIR(LoadIR),
+		.IMemWrite(IMemWrite),
+		.DMemWrite(DMemWrite),
+		.LoadMDR(LoadMDR),
+		.Reset(Reset),
+		.BranchOp(BranchOp),
+		.PCWriteCond(PCWriteCond),
+		.instruction(inst)
+	);
 
 	Registrador64 pc(
 		.Clk(clk), 

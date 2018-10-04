@@ -1,4 +1,4 @@
-module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
+module SignalExtend(input logic [31:0] Inst, output [63:0] Out);
 	always_comb begin
 		
 		if(Inst[6:0] == 0010011 || Inst[6:0] == 0000011) begin
