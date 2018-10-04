@@ -1,4 +1,8 @@
-module unidadeProcessamento_test(input logic clk);
+module unidadeProcessamento_test(
+	input logic clk,
+	output logic [63:0] PCOut
+	);
+	
 	logic 	PCSrc; 
 	logic 	[2:0] ALUFunct; 
 	logic 	[1:0] ALUSrcB;
@@ -14,31 +18,35 @@ module unidadeProcessamento_test(input logic clk);
 	logic 	DMemWrite; 
 	logic 	LoadMDR; 
 	logic 	Reset;
-	logic		BranchOp;
-	logic		PCWriteCond;
-	logic [31:0] inst;
-	logic [63:0]	PCIn, PCOut;
-	logic [31:0] 	IMemOut;
-	logic [4:0]  	Instr19_15;
-	logic [4:0]		Instr24_20;
-	logic [4:0]		Instr11_7;
-	logic [6:0]		Instr6_0;
-	logic [31:0]	Instr31_0;
-	logic [63:0]	WriteData;
-	logic [63:0]	RegAIn, RegBIn;
-	logic [63:0]	RegAOut, RegBOut;
-	logic [63:0]	SignalExtendOut;
-	logic [63:0]	ShiftLeftOut;
-	logic [63:0]	ALUOut;
-	logic 			zero;
-	logic [63:0]	MuxAOut;
-	logic [63:0]	MuxBOut;
-	logic [63:0]	RegALUOutOut;
-	logic [63:0]	DataMemoryOut;
-	logic [63:0]	MemDataRegOut;
-	logic [63:0]	BranchOpOut;
-	logic 			LoadPC;
-
+	logic	BranchOp;
+	logic	PCWriteCond;
+	logic 	[31:0] inst;
+	logic 	[63:0] PCIn;
+	logic 	[31:0] IMemOut;
+	logic 	[4:0] Instr19_15;
+	logic 	[4:0] Instr24_20;
+	logic 	[4:0] Instr11_7;
+	logic 	[6:0] Instr6_0;
+	logic 	[31:0] Instr31_0;
+	logic 	[63:0] WriteData;
+	logic 	[63:0] RegAIn, RegBIn;
+	logic 	[63:0] RegAOut, RegBOut;
+	logic 	[63:0] SignalExtendOut;
+	logic 	[63:0] ShiftLeftOut;
+	logic 	[63:0] ALUOut;
+	logic 	zero;
+	logic 	[63:0] MuxAOut;
+	logic 	[63:0] MuxBOut;
+	logic 	[63:0] RegALUOutOut;
+	logic 	[63:0] DataMemoryOut;
+	logic 	[63:0] MemDataRegOut;
+	logic 	[63:0] BranchOpOut;
+	logic	LoadPC;
+	
+	initial begin
+		PCOut = 64'b0;
+	end
+	
 	unidadeControle UC(
 		.clk(clk),
 		.PCSrc(PCSrc),
@@ -196,8 +204,9 @@ module unidadeProcessamento_test(input logic clk);
 		.In2(!zero),
 		.Out(BranchOpOut)
 	);
-
-	always_comb
-		LoadPC = ((BranchOpOut & PCWriteCond) | PCWrite);
-
+	
+	always_comb begin
+		LoadPC <= ((BranchOpOut & PCWriteCond) | PCWrite);
+	end
+	
 endmodule 

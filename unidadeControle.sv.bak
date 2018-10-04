@@ -89,7 +89,6 @@
 				IMemWrite <= 0;
 				LoadIR <= 1;
 
-
 				case(instruction[6:0])
 					7'b0110011: //type r
 					begin
@@ -106,32 +105,18 @@
 					end
 					7'b0100011: //type s
 					begin
-						ALUSrcA <= 2'b01;
-						ALUSrcB <= 2'b10;
-						ALUFunct <= 3'b001;
-						LoadALUOut <= 1;
 						state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
 					end
 					7'b0010011: //type i (ADDI)
 					begin
-						ALUSrcA <= 2'b01;
-						ALUSrcB <= 2'b10;
-						ALUFunct <= 3'b001;
-						LoadALUOut <= 1;
 						state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
 					end
 					7'b0000011: //type i (LD)
 					begin
-						ALUSrcA <= 2'b01;
-						ALUSrcB <= 2'b10;
-						ALUFunct <= 3'b001;
-						LoadALUOut <= 1;
 						state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
 					end
 					7'b0110111: //type u
 					begin
-						MemToReg <= 2;
-						WriteReg <= 1;
 						state <= lui; 
 					end
 					7'b1100111: //type sb
