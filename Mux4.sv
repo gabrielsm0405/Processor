@@ -1,4 +1,4 @@
-module SignalExtend(Inst, Out);
+module Mux4(Control, In1, In2, In3, In4, Out);
 	input logic [3:0]Control, logic [63:0]In1, logic [63:0]In2;
 	output logic [63:0]Out;
 	always_comb begin
