@@ -22,7 +22,6 @@ module unidadeProcessamento_test(
 	logic 	Reset;
 	logic	BranchOp;
 	
-	logic 	[31:0] inst;
 	logic 	[63:0] PCIn;
 	logic 	[4:0] Instr19_15;
 	logic 	[4:0] Instr24_20;
@@ -68,7 +67,7 @@ module unidadeProcessamento_test(
 		.Reset(Reset),
 		.BranchOp(BranchOp),
 		.PCWriteCond(PCWriteCond),
-		.instruction(inst)
+		.instruction(IMemOut)
 	);
 
 	Registrador64 pc(
