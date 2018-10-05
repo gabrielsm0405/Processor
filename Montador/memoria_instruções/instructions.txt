@@ -1,5 +1,2 @@
-add x9,x20,x21
-sub x9,x20,x21
-beq x2,x3,8
-beq x9,x3,13
-ld x9,23(x10)
+addi x9,x0,3
+beq x0,x0,16

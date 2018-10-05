@@ -274,8 +274,8 @@ for x in arrayInst:
 		imm= int(inst[1].split(",")[2])
 
 		imm1 = get_bin(imm,12)[0]
-		imm2 = get_bin(imm,12)[2:7]
-		imm3 = get_bin(imm,12)[7:12]
+		imm2 = get_bin(imm,12)[2:8]
+		imm3 = get_bin(imm,12)[8:12]
 		imm4 = get_bin(imm,12)[1]
 
 		decod+=imm1+imm2
@@ -291,8 +291,8 @@ for x in arrayInst:
 		imm= int(inst[1].split(",")[2])
 
 		imm1 = get_bin(imm,12)[0]
-		imm2 = get_bin(imm,12)[2:7]
-		imm3 = get_bin(imm,12)[7:12]
+		imm2 = get_bin(imm,12)[2:8]
+		imm3 = get_bin(imm,12)[8:12]
 		imm4 = get_bin(imm,12)[1]
 
 		decod+=imm1+imm2
@@ -362,6 +362,8 @@ for x in arrayInst:
 		decod+='0110111'
 
 	if(len(x)>0):
+		#TESTEZONE
+
 		string2 = ''
 		string = ''
 		for a in range(8):
@@ -381,6 +383,8 @@ for x in arrayInst:
 		string2 += string
 
 		decod = string2
+
+		#TESTEZONE
 
 		n=31
 		count+=1
