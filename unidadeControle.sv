@@ -19,25 +19,14 @@
 	output logic PCWriteCond,
 	input logic[31:0] instruction
 );
-	reg [4:0]state;
+	logic [4:0] state;
+
 	initial begin
-		state = 0;
-		PCWrite = 0;
-		PCWriteCond = 0; 
-		PCSrc = 0;
-		ALUFunct = 3'b000;
-		ALUSrcA = 0;
-		ALUSrcB = 2'b00;
-		LoadRegA = 0;
-		LoadRegB = 0;
-		LoadALUOut =0;
-		WriteReg = 0;
-		MemToReg = 0;
-		LoadMDR = 0;
-		DMemWrite = 0;
-		IMemWrite = 0;
-		LoadIR = 0;
+		force state = 0;
+		release state;
 	end
+	
+
 	parameter init_state = 0; //estado 0
 	parameter decod = 1;  // estado 1
 	parameter cal_offset = 2; //
@@ -51,10 +40,10 @@
 	parameter ld_wreg = 10;//
 	parameter add_wreg = 11;//
 
-	always @(posedge clk) begin
+	always_ff@(posedge clk) begin
 		case(state)
 			init_state: begin
-
+				Reset <= 0;
 				PCWrite <= 1;
 				PCWriteCond <= 0;
 				PCSrc <= 0;
@@ -132,7 +121,11 @@
 							end
 						endcase
 					end		
+					default: begin
+						state <= 0;
+					end
 				endcase
+				//state <= 0; //OBS.: se tá chegando aqui nao tá lendo/interpretando a instrução direito
 				end
 
 			cal_offset: begin

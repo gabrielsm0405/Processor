@@ -1,3 +1,5 @@
 module ShiftLeft(input logic [63:0] In, output logic [63:0] Out);
-	Out <= (1 << In);
+	always_ff begin
+		Out <= (In << 1);
+	end
 endmodule 

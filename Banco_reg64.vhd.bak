@@ -257,7 +257,6 @@ ARCHITECTURE behavioral_arch OF Banco_reg64 IS
 						when "11101" =>	Reg29 <= WriteData;
 						when "11110" =>	Reg30 <= WriteData;
 						when "11111" =>	Reg31 <= WriteData;
-						when others =>  Reg31 <= WriteData;
 					end case;
 				end if;
 			end if;

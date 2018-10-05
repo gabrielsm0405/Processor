@@ -1,5 +1,5 @@
 module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
-	always_ff  begin
+	always_comb  begin
 		case (Inst[6:0])
 			7'b0010011: begin
 				Out[11:0] <= Inst[31:20];

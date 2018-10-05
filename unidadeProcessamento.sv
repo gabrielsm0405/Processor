@@ -114,8 +114,8 @@ module unidadeProcessamento(
 	);
 
 	Ula64 ALU(
-		.A(RegAOut),
-		.B(RegBOut),
+		.A(MuxAOut),
+		.B(MuxBOut),
 		.Seletor(ALUFunct),
 		.S(ALUOut),
 		.z(zero)
