@@ -6,21 +6,15 @@ module simulacao;
 
     logic clk;
     logic [63:0]Out;
-	logic PCWrite;
-	logic PCWriteCond;
-    logic [31:0] IMemOut;
 
     unidadeProcessamento_test test (
         .clk(clk),        
-        .PCOut(Out),
-        .PCWrite(PCWrite),
-        .PCWriteCond(PCWriteCond),
-        .IMemOut(IMemOut)
+        .PCOut(Out)
 	); 
 
     initial begin 
         clk = 1'b1;
-        $monitor($time,"IMemOut - %b   PCWRITE - %b   PCWRITECOND - %b", IMemOut, PCWrite, PCWriteCond);  
+        $monitor($time,"PC - %b", Out);  
     end
 
     always #(CLKDELAY) clk = ~clk;

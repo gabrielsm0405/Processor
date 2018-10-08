@@ -1,11 +1,11 @@
 module unidadeProcessamento_test(
 	input logic clk,
-	output logic [63:0] PCOut,
-	output logic PCWrite,
-	output logic PCWriteCond,
-	output logic 	[31:0] IMemOut
+	output logic [63:0] PCOut
 	);
-
+	
+	logic PCWrite;
+	logic PCWriteCond;
+	logic 	[31:0] IMemOut;
 	logic 	PCSrc; 
 	logic 	[2:0] ALUFunct; 
 	logic 	[1:0] ALUSrcB;
