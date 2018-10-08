@@ -22,7 +22,7 @@
 	logic [4:0] state;
 
 	initial begin
-		force state = 0;
+		force state = 12;
 		release state;
 	end
 	
@@ -39,9 +39,14 @@
 	parameter bne_wpc = 9;//
 	parameter ld_wreg = 10;//
 	parameter add_wreg = 11;//
+	parameter rst = 12;
 
 	always_ff@(posedge clk) begin
 		case(state)
+			rst: begin
+				Reset <= 1;
+				state <= init_state;
+			end
 			init_state: begin
 				Reset <= 0;
 				PCWrite <= 1;
@@ -58,7 +63,7 @@
 				LoadMDR <= 0;
 				DMemWrite <= 0;
 				IMemWrite <= 0;
-				LoadIR <= 0;
+				LoadIR <= 1;
 				state <= decod;
 				end
 			decod: begin
@@ -71,12 +76,12 @@
 				LoadRegA <= 1;
 				LoadRegB <= 1;
 				LoadALUOut <=1;
-				WriteReg <= 0;
+				WriteReg <= 1;
 				MemToReg <= 0;
 				LoadMDR <= 0;
 				DMemWrite <= 0;
 				IMemWrite <= 0;
-				LoadIR <= 1;
+				LoadIR <= 0;
 
 				case(instruction[6:0])
 					7'b1100110: //type r
