@@ -1,5 +1,6 @@
 module unidadeProcessamento_test(
 	input logic clk,
+	input logic rst,
 	output logic [63:0] PCOut
 	);
 	
@@ -51,6 +52,7 @@ module unidadeProcessamento_test(
 	
 	unidadeControle UC(
 		.clk(clk),
+		.rst(rst),
 		.PCSrc(PCSrc),
 		.ALUFunct(ALUFunct),
 		.ALUSrcB(ALUSrcB),

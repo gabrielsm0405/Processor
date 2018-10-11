@@ -5,6 +5,7 @@ module simulacao;
     localparam CLKDELAY = CLKPERIOD / 2;
 
     logic clk;
+    logic rst;
     logic [63:0]Out;
 
     unidadeProcessamento_test test (
@@ -14,11 +15,14 @@ module simulacao;
 
     initial begin 
         clk = 1'b1;
+        rst = 1'b1;
         $monitor($time,"PC - %b", Out);  
     end
 
-    always #(CLKDELAY) clk = ~clk;
-    
+    always begin
+        #(CLKDELAY) clk = ~clk;
+        rst <= 0; // reset só deve mudar depois da primeira mudança de clk, acho que funciona.
+    end
                 
 endmodule
 
