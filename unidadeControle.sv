@@ -71,7 +71,7 @@
 					LoadRegA <= 1;
 					LoadRegB <= 1;
 					LoadALUOut <=1;
-					WriteReg <= 1;
+					WriteReg <= 0;
 					MemToReg <= 0;
 					LoadMDR <= 0;
 					DMemWrite <= 0;
@@ -79,7 +79,7 @@
 					LoadIR <= 0;
 
 					case(instruction[6:0])
-						7'b1100110: //type r
+						7'b0110011: //type r
 						begin
 							case(instruction[31:25])
 								7'b0000000: // add

@@ -11,7 +11,7 @@ module simulacao;
     unidadeProcessamento_test test (
         .clk(clk),        
         .PCOut(Out),
-	.rst(rst)
+	    .rst(rst)
 	); 
 
     initial begin 
