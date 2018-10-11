@@ -1,0 +1,11 @@
+module Mux4(input logic [1:0]Control,input logic [63:0]In1, input logic [63:0] In2, input logic [63:0]In3, In4,output logic [63:0] Out);
+		if(Control == 2'b00) 
+			Out <= In1;
+		else if(Control == 2'b01)
+			Out <= In2;
+		else if(Control == 2'b10)
+			Out <= In3;
+		else if(Control == 2'b11)
+			Out <= In4;
+
+endmodule // mux
