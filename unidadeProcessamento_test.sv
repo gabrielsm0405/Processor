@@ -1,7 +1,8 @@
 module unidadeProcessamento_test(
 	input logic clk,
 	input logic rst,
-	output logic [63:0] PCOut
+	output logic [63:0] PCOut,
+	output logic [2:0] ALUFunct
 	);
 	
 	logic 	[63:0] RegAIn, RegBIn;
@@ -16,13 +17,13 @@ module unidadeProcessamento_test(
 	logic PCWriteCond;
 	logic 	[31:0] IMemOut;
 	logic 	PCSrc; 
-	logic 	[2:0] ALUFunct; 
+	 
 	logic 	[1:0] ALUSrcB;
-	logic 	ALUSrcA; 
-	logic 	LoadRegA; 
+	logic 	ALUSrcA;
+	logic 	LoadRegA;
 	logic 	LoadRegB; 
 	logic 	LoadALUOut;
-	logic 	WriteReg; 
+	logic 	WriteReg;
 	logic 	[1:0]MemToReg;
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
@@ -44,6 +45,11 @@ module unidadeProcessamento_test(
 	logic 	[63:0] MemDataRegOut;
 	logic 	[63:0] BranchOpOut;
 	logic	LoadPC;
+	
+	initial begin
+		PCOut = 64'b0;
+
+	end
 	
 	unidadeControle UC(
 		.clk(clk),

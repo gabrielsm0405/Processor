@@ -35,15 +35,15 @@
 	parameter ld_wreg = 10;//
 	parameter add_wreg = 11;//
 
-	always_ff@(posedge clk) begin
+	always_ff@(posedge clk or posedge rst) begin
 		if(rst)begin
 			Reset <= 1;
 			state <= init_state;
 		end
 		else begin
+			Reset <=0;
 			case(state)
 				init_state: begin
-					Reset <= 0;
 					PCWrite <= 1;
 					PCWriteCond <= 0;
 					PCSrc <= 0;

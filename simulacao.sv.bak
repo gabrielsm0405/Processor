@@ -1,5 +1,5 @@
 `timescale 1ps/1ps
-//oi
+
 module simulacao;
     localparam CLKPERIOD = 1000;
     localparam CLKDELAY = CLKPERIOD / 2;

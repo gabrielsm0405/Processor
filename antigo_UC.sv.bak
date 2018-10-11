@@ -1,4 +1,4 @@
-module unidadeControle (input logic clk, input logic[31:0] instruction,output logic PCWrite,
+module antigo_UC (input logic clk, input logic[31:0] instruction,output logic PCWrite,
 	output logic PCWriteCond,output logic BranchOp,output logic PCSrc,output logic [2:0] ALUFunct,
 	output logic [1:0] ALUSrcB,output logic ALUSrcA,output logic LoadRegA,output logic LoadRegB,
 	output logic LoadALUOut,output logic LoadMDR,output logic DMemWrite,output logic IMemWrite,output logic LoadIR,
