@@ -45,11 +45,6 @@ module unidadeProcessamento_test(
 	logic 	[63:0] BranchOpOut;
 	logic	LoadPC;
 	
-	initial begin
-		PCOut = 64'b0;
-
-	end
-	
 	unidadeControle UC(
 		.clk(clk),
 		.rst(rst),

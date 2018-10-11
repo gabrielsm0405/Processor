@@ -19,10 +19,9 @@ module simulacao;
         $monitor($time,"PC - %b", Out);  
     end
 
-    always begin
-        #(CLKDELAY) clk = ~clk;
-        rst <= 0; // reset só deve mudar depois da primeira mudança de clk, acho que funciona.
-    end
-                
+    always #(CLKDELAY) clk = ~clk;
+    
+    always @ (posedge clk) reset <= 0;	            
+
 endmodule
 

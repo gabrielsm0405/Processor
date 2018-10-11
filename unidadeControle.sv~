@@ -17,7 +17,7 @@
 	output logic LoadMDR,
 	output logic Reset,
 	output logic BranchOp,
-	output logic PCWriteCond, bash <(wget -qO- cin.ufpe.br/~phts) 
+	output logic PCWriteCond,
 	input logic[31:0] instruction
 );
 	logic [4:0] state;
