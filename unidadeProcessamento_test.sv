@@ -2,11 +2,16 @@ module unidadeProcessamento_test(
 	input logic clk,
 	input logic rst,
 	output logic [63:0] PCOut,
-	output logic [2:0] ALUFunct
+	output logic [2:0] ALUFunct,
+	output logic DMemWrite,
+	output logic [63:0] ALUOut,
+	output logic [4:0] state,
+	output logic [63:0] RegALUOutOut,
+	output logic [63:0] RegBOut
 	);
 	
 	logic 	[63:0] RegAIn, RegBIn;
-	logic 	[63:0] ALUOut;
+	
 	logic 	[4:0] Instr19_15;
 	logic 	[4:0] Instr24_20;
 	logic 	[4:0] Instr11_7;
@@ -27,20 +32,20 @@ module unidadeProcessamento_test(
 	logic 	[1:0]MemToReg;
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
-	logic 	DMemWrite; 
+	 
 	logic 	LoadMDR; 
 	logic 	Reset;
 	logic	BranchOp;
 	
 	logic 	[63:0] PCIn;
 	logic 	[63:0] WriteData;
-	logic 	[63:0] RegAOut, RegBOut;
+	logic 	[63:0] RegAOut;
 	logic 	[63:0] SignalExtendOut;
 	logic 	[63:0] ShiftLeftOut;
 	logic 	zero;
 	logic 	[63:0] MuxAOut;
 	logic 	[63:0] MuxBOut;
-	logic 	[63:0] RegALUOutOut;
+	
 	logic 	[63:0] DataMemoryOut;
 	logic 	[63:0] MemDataRegOut;
 	logic 	[63:0] BranchOpOut;
@@ -71,7 +76,8 @@ module unidadeProcessamento_test(
 		.Reset(Reset),
 		.BranchOp(BranchOp),
 		.PCWriteCond(PCWriteCond),
-		.instruction(IMemOut)
+		.instruction(IMemOut),
+		.state(state)
 	);
 
 	Registrador64 pc(
