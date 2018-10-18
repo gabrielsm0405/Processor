@@ -30,11 +30,11 @@ module Memoria64
      input wire     [63:0]Datain,
      output wire	[63:0]Dataout,
      input logic     Wr,
-     input wire     [1:0]tam
+     input logic     [1:0]tam
     );
     
 
-    wire wr0,wr1,wr2,wr3,wr4,wr5,wr6,wr7;
+    logic wr0,wr1,wr2,wr3,wr4,wr5,wr6,wr7;
 
     wire [15:0]readUsefullAddress = raddress[15:0]; 
     
@@ -112,60 +112,59 @@ module Memoria64
     //7
     ramOnChip64 #(.ramSize(65536), .ramWide(8) ) memBlock7 (.clk(Clk), .data(inS7), .radd(addS7), .wadd(waddS7), .wren(wr7), .q(outS7) );  
     
-    always_comb beginmd
-    c
+    always_comb begin
         case(Wr)
             1'b0:begin
-                wr0 = 0;
-                wr1 = 0;
-                wr2 = 0;
-                wr3 = 0;
-                wr4 = 0;
-                wr5 = 0;
-                wr6 = 0;
-                wr7 = 0;
+                wr0 <= 0;
+                wr1 <= 0;
+                wr2 <= 0;
+                wr3 <= 0;
+                wr4 <= 0;
+                wr5 <= 0;
+                wr6 <= 0;
+                wr7 <= 0;
             end // 1'b0:
             1'b1:begin
                 case (tam)
                     2'b00:begin
-                        wr0 = 1;
-                        wr1 = 1;
-                        wr2 = 1;
-                        wr3 = 1;
-                        wr4 = 1;
-                        wr5 = 1;
-                        wr6 = 1;
-                        wr7 = 1;
+                        wr0 <= 1;
+                        wr1 <= 1;
+                        wr2 <= 1;
+                        wr3 <= 1;
+                        wr4 <= 1;
+                        wr5 <= 1;
+                        wr6 <= 1;
+                        wr7 <= 1;
                     end // 2'b00:
                     2'b01:begin
-                        wr0 = 1;
-                        wr1 = 1;
-                        wr2 = 1;
-                        wr3 = 1;
-                        wr4 = 0;
-                        wr5 = 0;
-                        wr6 = 0;
-                        wr7 = 0;
+                        wr0 <= 1;
+                        wr1 <= 1;
+                        wr2 <= 1;
+                        wr3 <= 1;
+                        wr4 <= 0;
+                        wr5 <= 0;
+                        wr6 <= 0;
+                        wr7 <= 0;
                     end // 2'b01:
                     2'b10:begin
-                        wr0 = 1;
-                        wr1 = 1;
-                        wr2 = 0;
-                        wr3 = 0;
-                        wr4 = 0;
-                        wr5 = 0;
-                        wr6 = 0;
-                        wr7 = 0;
+                        wr0 <= 1;
+                        wr1 <= 1;
+                        wr2 <= 0;
+                        wr3 <= 0;
+                        wr4 <= 0;
+                        wr5 <= 0;
+                        wr6 <= 0;
+                        wr7 <= 0;
                     end // 2'b10:
                     2'b11:begin
-                        wr0 = 1;
-                        wr1 = 0;
-                        wr2 = 0;
-                        wr3 = 0;
-                        wr4 = 0;
-                        wr5 = 0;
-                        wr6 = 0;
-                        wr7 = 0;
+                        wr0 <= 1;
+                        wr1 <= 0;
+                        wr2 <= 0;
+                        wr3 <= 0;
+                        wr4 <= 0;
+                        wr5 <= 0;
+                        wr6 <= 0;
+                        wr7 <= 0;
                     end // 2'b11:
                 endcase // tam
             end // 1'b1:
