@@ -10,7 +10,7 @@ module unidadeControle (
 	output logic LoadRegB,
 	output logic LoadALUOut,
 	output logic WriteReg,
-	output logic [1:0] MemToReg,
+	output logic [2:0] MemToReg,
 	output logic LoadIR,
 	output logic IMemWrite,
 	output logic DMemWrite,
@@ -21,7 +21,8 @@ module unidadeControle (
 	input logic[31:0] instruction,
 	output logic [4:0] state,
 	output logic [1:0] tam,
-	output logic [1:0]lim
+	output logic [1:0]lim,
+	output logic [1:0] Shift
 );
 	
 
@@ -440,7 +441,7 @@ module unidadeControle (
 					LoadRegB <= 0;
 					LoadALUOut <=0;
 					WriteReg <= 1;
-					MemToReg <= 2'b10;
+					MemToReg <= 3'b010;
 					LoadMDR <= 0;
 					DMemWrite <= 0;
 					IMemWrite <= 0;
