@@ -29,7 +29,7 @@ module unidadeProcessamento_test(
 	logic 	LoadRegB; 
 	logic 	LoadALUOut;
 	logic 	WriteReg;
-	logic 	[1:0]MemToReg;
+	logic 	[2:0]MemToReg;
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
 	 
@@ -54,6 +54,9 @@ module unidadeProcessamento_test(
 	logic [1:0]tam;
 	logic [1:0]lim;
 	logic [63:0]limitOut;
+	logic [1:0]shift;
+	logic [63:0]ShiftModuleOut;
+
 	initial begin
 		PCOut = 64'b0;
 
@@ -82,7 +85,8 @@ module unidadeProcessamento_test(
 		.instruction(IMemOut),
 		.state(state),
 		.tam(tam),
-		.lim(lim)
+		.lim(lim),
+		.Shift(shift)
 	);
 
 	Registrador64 pc(
@@ -203,12 +207,19 @@ module unidadeProcessamento_test(
 		.Out(limitOut)
 	);
 	
+	Deslocamento ShiftModule(
+		.Shift(shift),
+		.Entrada(RegAIn),
+		.N(Instr31_0),
+		.Saida(ShiftLeftOut)
+	);
 	
-	Mux4 MuxMemToReg(
+	Mux8 MuxMemToReg(
 		.Control(MemToReg),
 		.In1(RegALUOutOut),
 		.In2(limitOut),
 		.In3(SignalExtendOut),
+		.In4(ShiftModuleOut),
 		.Out(WriteData)
 	);
 
