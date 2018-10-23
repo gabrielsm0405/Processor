@@ -70,6 +70,17 @@ module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
 					end
 				endcase
 			end
+			7'b0010011: begin
+				Out[11:0]<=Inst[31:20];
+				case(Inst[31])
+					1: begin
+						Out[63:32] <=  44'b11111111111111111111111111111111111111111111;
+					end
+					0: begin
+						Out[63:32] <= 44'b00000000000000000000000000000000000000000000;
+					end
+				endcase
+			end
 		endcase
 		
 	end
