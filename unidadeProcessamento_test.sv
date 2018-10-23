@@ -51,6 +51,9 @@ module unidadeProcessamento_test(
 	logic 	[63:0] BranchOpOut;
 	logic	LoadPC;
 	
+	logic [1:0]tam;
+	logic [1:0]lim;
+	logic [63:0]limitOut;
 	initial begin
 		PCOut = 64'b0;
 
@@ -77,7 +80,9 @@ module unidadeProcessamento_test(
 		.BranchOp(BranchOp),
 		.PCWriteCond(PCWriteCond),
 		.instruction(IMemOut),
-		.state(state)
+		.state(state),
+		.tam(tam),
+		.lim(lim)
 	);
 
 	Registrador64 pc(
@@ -174,13 +179,14 @@ module unidadeProcessamento_test(
 		.Out(PCIn)
 	);
 
-	Memoria64 DataMemory(
+	Memoria64_test DataMemory(
 		.raddress(RegALUOutOut),
 		.waddress(RegALUOutOut),
 		.Clk(clk),
 		.Datain(RegBOut),
 		.Dataout(DataMemoryOut),
-		.Wr(DMemWrite)
+		.Wr(DMemWrite),
+		.tam(tam)
 	);
 
 	Registrador64 MemDataReg(
@@ -190,11 +196,18 @@ module unidadeProcessamento_test(
 		.Entrada(DataMemoryOut),
 		.Saida(MemDataRegOut)
 	);
-
+	
+	Limitador limita_l(
+		.lim(lim),
+		.In(MemDataRegOut),
+		.Out(limitOut)
+	);
+	
+	
 	Mux4 MuxMemToReg(
 		.Control(MemToReg),
 		.In1(RegALUOutOut),
-		.In2(MemDataRegOut),
+		.In2(limitOut),
 		.In3(SignalExtendOut),
 		.Out(WriteData)
 	);

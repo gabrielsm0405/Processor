@@ -4,5 +4,5 @@ sub x0,x0,x0
 sub x10,x10,x10
 addi x9,x0,32
 addi x10,x10,10
-sd x10,0(x9)
-ld x11,0(x9)
+sw x10,0(x9)
+lw x11,0(x9)
