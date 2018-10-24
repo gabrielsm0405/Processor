@@ -48,9 +48,7 @@ module unidadeProcessamento_test(
 	logic 	[63:0] MuxAOut;
 	logic 	[63:0] MuxBOut;
 	
-	logic [1:0]ShiftControl;
-	logic [63:0]DeslocamentoOut;
-	logic [5:0] ShiftN;
+	
 	
 	logic 	[63:0] BranchOpOut;
 	logic	LoadPC;
@@ -193,12 +191,11 @@ module unidadeProcessamento_test(
 		.Saida(MemDataRegOut)
 	);
 
-	Mux8 MuxMemToReg(
+	Mux4 MuxMemToReg(
 		.Control(MemToReg),
 		.In1(RegALUOutOut),
 		.In2(MemDataRegOut),
 		.In3(SignalExtendOut),
-		.In5(DeslocamentoOut),
 		.Out(WriteData)
 	);
 
@@ -218,18 +215,6 @@ module unidadeProcessamento_test(
 		.In2(!zero),
 		.In3(ALUOut),
 		.Out(BranchOpOut)
-	);
-	
-	DivImm DivImm(
-		.Inst(Instr31_0),
-		.Out(ShiftN)
-	);
-
-	Deslocamento ModuloDeslocamento(
-		.Shift(),
-		.Entrada(RegAIn),
-		.N(ShiftN),
-		.Saida(DeslocamentoOut)
 	);
 	
 	always_comb begin

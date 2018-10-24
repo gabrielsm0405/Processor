@@ -17,8 +17,7 @@ module unidadeControle (
 	output logic [1:0]BranchOp,
 	output logic PCWriteCond,
 	input logic[31:0] instruction,
-	output logic [4:0] state,
-	output logic [1:0] ShiftControl
+	output logic [4:0] state
 );
 	
 
@@ -37,6 +36,7 @@ module unidadeControle (
 	parameter the_next_episode = 12; //estado de espera pós beq
 	parameter blt_wpc = 13;
 	parameter bge_wpc = 14;
+	parameter and_reg = 15;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -94,7 +94,14 @@ module unidadeControle (
 						case(instruction[31:25])
 							Add: // add
 							begin
-								state <= sum_reg; 	
+								case(instruction[14:12])
+									3'b000: begin
+										state <= sum_reg;
+									end
+									3'b111: begin
+										state <= and_reg;
+									end // and
+								endcase
 							end
 							Sub: // sub
 							begin
@@ -202,6 +209,26 @@ module unidadeControle (
 			end	
 			sub_reg: begin
 				ALUFunct <= 3'b010;
+				ALUSrcA <= 1;
+				ALUSrcB <= 2'b00;
+				LoadALUOut <=1;
+
+				PCWrite <= 0;
+				PCWriteCond <= 0;
+				PCSrc <= 0;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				WriteReg <= 0;
+				MemToReg <= 0;
+				LoadMDR <= 0;
+				DMemWrite <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+
+				state <= add_wreg;
+			end
+			and_reg: begin
+				ALUFunct <= 3'b011;
 				ALUSrcA <= 1;
 				ALUSrcB <= 2'b00;
 				LoadALUOut <=1;
