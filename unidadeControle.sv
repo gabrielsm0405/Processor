@@ -9,7 +9,7 @@ module unidadeControle (
 	output logic LoadRegB,
 	output logic LoadALUOut,
 	output logic WriteReg,
-	output logic [1:0] MemToReg,
+	output logic [2:0] MemToReg,
 	output logic LoadIR,
 	output logic IMemWrite,
 	output logic DMemWrite,
@@ -17,7 +17,8 @@ module unidadeControle (
 	output logic [1:0]BranchOp,
 	output logic PCWriteCond,
 	input logic[31:0] instruction,
-	output logic [4:0] state
+	output logic [4:0] state,
+	output logic [1:0] ShiftControl
 );
 	
 
@@ -37,6 +38,9 @@ module unidadeControle (
 	parameter blt_wpc = 13;
 	parameter bge_wpc = 14;
 	parameter and_reg = 15;
+	parameter slli = 16;
+	parameter srli = 17;
+	parameter srai = 18;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -115,7 +119,25 @@ module unidadeControle (
 					end
 					Addi: //type i (ADDI)
 					begin
-						state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
+						case(instruction[14:12])//verifica os shifts
+							3'b101: begin
+								case(instruction[31:26])
+									6'b000000: begin
+										state<=srli;
+									end // 6'b000000:
+									6'b01000: begin
+										state<=srai;
+									end // 6'b01000:
+								endcase
+							end // 3'b101:
+							3'b001: begin
+								state <= slli;
+							end 
+							3'b000: begin
+								state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
+							end 
+						endcase 
+						
 					end
 					Ld: //type i (LD)
 					begin
@@ -433,7 +455,25 @@ module unidadeControle (
 				BranchOp <= 0;
 
 				state <= init_state;
-		 	end		 
+		 	end
+		 	slli: begin
+		 		ShiftControl <= 2'b00;
+		 		MemToReg <= 3'b100;
+		 		WriteReg <= 1;
+		 		state<=init_state;
+		 	end 
+		 	srli: begin
+		 		ShiftControl <= 2'b01;
+		 		MemToReg <= 3'b100;
+		 		WriteReg <= 1;
+		 		state<=init_state;
+		 	end
+		 	srai: begin
+		 		ShiftControl <= 2'b10;
+		 		MemToReg <= 3'b100;
+		 		WriteReg <= 1;
+		 		state<=init_state;
+		 	end
 		 	default: begin
 		 		state <= 0;
 		 	end

@@ -11,7 +11,8 @@ module unidadeProcessamento_test(
 	output logic [63:0] DataMemoryOut,
 	output logic [63:0] MemDataRegOut,
 	output logic 	[6:0] Instr6_0,
-	output logic 	LoadMDR
+	output logic 	LoadMDR,
+	output logic 	[2:0]MemToReg
 	);
 	
 	logic 	[63:0] RegAIn, RegBIn;
@@ -33,7 +34,7 @@ module unidadeProcessamento_test(
 	logic 	LoadRegB; 
 	logic 	LoadALUOut;
 	logic 	WriteReg;
-	logic 	[1:0]MemToReg;
+	
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
 	 
@@ -48,7 +49,9 @@ module unidadeProcessamento_test(
 	logic 	[63:0] MuxAOut;
 	logic 	[63:0] MuxBOut;
 	
-	
+	logic [1:0]ShiftControl;
+	logic [63:0]DeslocamentoOut;
+	logic [5:0] ShiftN;
 	
 	logic 	[63:0] BranchOpOut;
 	logic	LoadPC;
@@ -77,7 +80,8 @@ module unidadeProcessamento_test(
 		.BranchOp(BranchOp),
 		.PCWriteCond(PCWriteCond),
 		.instruction(IMemOut),
-		.state(state)
+		.state(state),
+		.ShiftControl(ShiftControl)
 	);
 
 	Registrador64 pc(
@@ -191,11 +195,12 @@ module unidadeProcessamento_test(
 		.Saida(MemDataRegOut)
 	);
 
-	Mux4 MuxMemToReg(
+	Mux8 MuxMemToReg(
 		.Control(MemToReg),
 		.In1(RegALUOutOut),
 		.In2(MemDataRegOut),
 		.In3(SignalExtendOut),
+		.In5(DeslocamentoOut),
 		.Out(WriteData)
 	);
 
@@ -215,6 +220,18 @@ module unidadeProcessamento_test(
 		.In2(!zero),
 		.In3(ALUOut),
 		.Out(BranchOpOut)
+	);
+	
+	DivImm DivImm(
+		.Inst(Instr31_0),
+		.Out(ShiftN)
+	);
+
+	Deslocamento ModuloDeslocamento(
+		.Shift(ShiftControl),
+		.Entrada(RegAIn),
+		.N(ShiftN),
+		.Saida(DeslocamentoOut)
 	);
 	
 	always_comb begin
