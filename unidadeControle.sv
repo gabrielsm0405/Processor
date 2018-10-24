@@ -33,6 +33,7 @@ module unidadeControle (
 	parameter bne_wpc = 9;
 	parameter ld_wreg = 10;
 	parameter add_wreg = 11;
+	parameter the_next_episode = 12; //estado de espera pós beq
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -265,7 +266,7 @@ module unidadeControle (
 				LoadIR <= 0;
 
 				state <=init_state;
-			end
+			end 
 		 	beq_wpc: begin
 		 		ALUFunct <= 3'b010;
 				ALUSrcA <= 1;
@@ -285,8 +286,11 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				
-				state <= init_state;
-		 	end	 
+				state <= the_next_episode;
+		 	end
+		 	the_next_episode: begin
+		 		state <= init_state;
+		 	end // the_next_episode:end	 
 		 	bne_wpc: begin
 		 		ALUFunct <= 3'b010;
 				ALUSrcA <= 1;
@@ -306,7 +310,7 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				
-				state <= init_state;
+				state <= the_next_episode;
 		 	end
 		 	ld_wreg: begin
 		 		WriteReg <= 1;
