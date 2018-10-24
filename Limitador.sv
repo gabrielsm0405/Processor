@@ -34,7 +34,7 @@ module Limitador(input logic [1:0]lim, output logic [63:0] Out, input logic [63:
 			end
 			2'b11: begin // lbu
 				Out[7:0] <= In[7:0];
-				Out[63:8] <= 48'b00000000000000000000000000000000000000000000000000000000;			
+				Out[63:8] <= 56'b00000000000000000000000000000000000000000000000000000000;			
 			end
 			default:begin
 				Out <= In;
