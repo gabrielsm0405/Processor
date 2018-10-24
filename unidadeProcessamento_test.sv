@@ -37,7 +37,7 @@ module unidadeProcessamento_test(
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
 	 
-	logic	BranchOp;
+	logic	[1:0]BranchOp;
 	
 	logic 	[63:0] PCIn;
 	logic 	[63:0] WriteData;
@@ -209,10 +209,11 @@ module unidadeProcessamento_test(
 		.Out(ShiftLeftOut)
 	);
 
-	Mux1 muxBranchOp(
+	Mux3 muxBranchOp(
 		.Control(BranchOp),
 		.In1(zero),
 		.In2(!zero),
+		.In3(ALUOut),
 		.Out(BranchOpOut)
 	);
 	

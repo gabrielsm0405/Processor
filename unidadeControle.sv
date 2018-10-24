@@ -14,7 +14,7 @@ module unidadeControle (
 	output logic IMemWrite,
 	output logic DMemWrite,
 	output logic LoadMDR,
-	output logic BranchOp,
+	output logic [1:0]BranchOp,
 	output logic PCWriteCond,
 	input logic[31:0] instruction,
 	output logic [4:0] state
@@ -34,10 +34,13 @@ module unidadeControle (
 	parameter ld_wreg = 10;
 	parameter add_wreg = 11;
 	parameter the_next_episode = 12; //estado de espera pós beq
+	parameter blt_wpc = 13;
+	parameter bge_wpc = 14;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
 	parameter SBtype = 7'b1100111;
+	parameter SBBeq = 7'b1100011;
 	parameter Addi = 7'b0010011;
 	parameter Ld = 7'b0000011;
 	parameter Utype = 7'b0110111;
@@ -114,16 +117,24 @@ module unidadeControle (
 					begin
 						state <= lui; 
 					end
+					SBBeq: //sb type, beq opcode
+					begin
+						state <= beq_wpc;
+					end
 					SBtype: //type sb
 					begin
 						case(instruction[14:12]) // funct3
-							3'b000: // BEQ
-							begin
-								state <= beq_wpc; //volta pro comeÃ§o 	
-							end
 							3'b001: // BNE
 							begin
 								state <= bne_wpc; //volta pro comeÃ§o 	
+							end
+							3'b101:
+							begin //BGE
+								state <= bge_wpc;
+							end
+							3'b100:
+							begin //BLT
+								state <= blt_wpc;
 							end
 						endcase
 					end		
@@ -272,7 +283,7 @@ module unidadeControle (
 				ALUSrcA <= 1;
 				ALUSrcB <= 2'b00;
 				PCWriteCond <= 1;
-				BranchOp <= 0;
+				BranchOp <= 2'b00;
 				PCSrc <= 1;
 
 		 		PCWrite <= 0;	
@@ -287,7 +298,7 @@ module unidadeControle (
 				LoadIR <= 0;
 				
 				state <= the_next_episode;
-		 	end
+		 	end // beq_wpc:
 		 	the_next_episode: begin
 		 		state <= init_state;
 		 	end // the_next_episode:end	 
@@ -295,7 +306,7 @@ module unidadeControle (
 		 		ALUFunct <= 3'b010;
 				ALUSrcA <= 1;
 				ALUSrcB <= 2'b00;
-				BranchOp <= 1;
+				BranchOp <= 2'b01;
 		 		
 				PCWriteCond <= 1;
 				PCSrc <= 1;
@@ -311,7 +322,49 @@ module unidadeControle (
 				LoadIR <= 0;
 				
 				state <= the_next_episode;
-		 	end
+		 	end // bne_wpc:
+		 	blt_wpc: begin
+		 		ALUFunct <= 3'b010;
+				ALUSrcA <= 1;
+				ALUSrcB <= 2'b00;
+				BranchOp <= 2'b11;
+		 		
+				PCWriteCond <= 1;
+				PCSrc <= 1;
+				PCWrite <= 0;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				WriteReg <= 0;
+				MemToReg <= 0;
+				LoadMDR <= 0;
+				DMemWrite <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				
+				state <= the_next_episode;
+		 	end // blt_wpc:
+		 	bge_wpc: begin
+		 		ALUFunct <= 3'b010;
+				ALUSrcA <= 1;
+				ALUSrcB <= 2'b00;
+				BranchOp <= 2'b10;
+		 		
+				PCWriteCond <= 1;
+				PCSrc <= 1;
+				PCWrite <= 0;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				WriteReg <= 0;
+				MemToReg <= 0;
+				LoadMDR <= 0;
+				DMemWrite <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				
+				state <= the_next_episode;
+		 	end // bge_wpc:
 		 	ld_wreg: begin
 		 		WriteReg <= 1;
 				MemToReg <= 1;
