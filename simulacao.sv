@@ -5,7 +5,7 @@ module simulacao;
     localparam CLKDELAY = CLKPERIOD / 2;
 
     logic clk;
-    logic rst;
+    logic Reset;
     logic [63:0]Out;
     logic [63:0]ALUOut;
     logic [63:0] RegALUOutOut;
@@ -13,27 +13,36 @@ module simulacao;
     logic [2:0]ALUFunct;
     logic[4:0] state;
     logic[63:0]RegBOut;
+    logic [63:0] DataMemoryOut;
+    logic [63:0] MemDataRegOut;
+    logic [6:0] Instr6_0;
+
     unidadeProcessamento_test test (
         .clk(clk),        
         .PCOut(Out),
-	   .rst(rst),
+        .Reset(Reset),
         .ALUOut(ALUOut),
         .DMemWrite(DMemWrite),
-	   .ALUFunct(ALUFunct),
-	   .state(state),
+        .ALUFunct(ALUFunct),
+        .state(state),
         .RegALUOutOut(RegALUOutOut),
-        .RegBOut(RegBOut)
+        .RegBOut(RegBOut),
+        .DataMemoryOut(DataMemoryOut),
+        .MemDataRegOut(MemDataRegOut),
+        .Instr6_0(Instr6_0)
 	); 
 
     initial begin 
         clk = 1'b1;
-        rst = 1'b1;
-        $monitor($time,"PC - %d, Regb - %d, Aluout - %d, Dmem- %b, State- %d, RegAlu - %d", Out,RegBOut, ALUOut, DMemWrite, state, RegALUOutOut);  
+        $monitor($time,"PC: %d, Estado: %d, Sinal da Mem Dados: %d, Saída da Mem Dados: %d, Saída do MDR: %d, OPCode: %b", Out, state, DMemWrite, DataMemoryOut, MemDataRegOut, Instr6_0);  
+        Reset = 1'b0;
+        #(CLKPERIOD)
+        Reset = 1'b1;
+        #(CLKPERIOD)
+        Reset = 1'b0; 
     end
 
-    always #(CLKDELAY) clk = ~clk;
-    
-    always @ (posedge clk) rst <= 0;	            
+    always #(CLKDELAY) clk = ~clk;            
 
 endmodule
 
