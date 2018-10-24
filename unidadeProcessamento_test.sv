@@ -7,8 +7,11 @@ module unidadeProcessamento_test(
 	output logic [63:0] ALUOut,
 	output logic [4:0] state,
 	output logic [63:0] RegALUOutOut,
-	output logic [63:0] RegBOut
-	);
+	output logic [63:0] RegBOut,
+	output logic [63:0] MuxAOut,
+	output logic [63:0] MuxBOut,
+	output logic [1:0] ALUSrcB
+);
 	
 	logic 	[63:0] RegAIn, RegBIn;
 	
@@ -23,7 +26,7 @@ module unidadeProcessamento_test(
 	logic 	[31:0] IMemOut;
 	logic 	PCSrc; 
 	 
-	logic 	[1:0] ALUSrcB;
+	
 	logic 	ALUSrcA;
 	logic 	LoadRegA;
 	logic 	LoadRegB; 
@@ -43,8 +46,7 @@ module unidadeProcessamento_test(
 	logic 	[63:0] SignalExtendOut;
 	logic 	[63:0] ShiftLeftOut;
 	logic 	zero;
-	logic 	[63:0] MuxAOut;
-	logic 	[63:0] MuxBOut;
+	
 	
 	logic 	[63:0] DataMemoryOut;
 	logic 	[63:0] MemDataRegOut;
@@ -236,7 +238,7 @@ module unidadeProcessamento_test(
 	Mux1 muxBranchOp(
 		.Control(BranchOp),
 		.In1(zero),
-		.In2(!zero),
+		.In2(~zero),
 		.Out(BranchOpOut)
 	);
 	
