@@ -17,7 +17,8 @@ module unidadeControle (
 	output logic [1:0]BranchOp,
 	output logic PCWriteCond,
 	input logic[31:0] instruction,
-	output logic [4:0] state
+	output logic [4:0] state,
+	output logic [1:0] ShiftControl
 );
 	
 
