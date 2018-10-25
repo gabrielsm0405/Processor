@@ -1,4 +1,5 @@
-jal x1,5
+addi x2,x0,4
+jalr x1,x2,10
 addi x9,x0,1
 addi x10,x9,3
 bge x9,x10,2
