@@ -1,9 +1,7 @@
-addi x9,x0,32
-addi x10,x0,4
-bge x10,x9,4
-sub x10,x0,x0
-add x10,x10,x9
-and x7,x10,x9
-add x0,x0,x0
-add x0,x0,x0
-addi x8,x8,30
+jal x1,5
+addi x9,x0,1
+addi x10,x9,3
+bge x9,x10,2
+addi x1,x0,10
+addi x1,x0,10
+break

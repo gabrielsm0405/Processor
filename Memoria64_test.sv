@@ -111,7 +111,6 @@ module Memoria64_test
     ramOnChip64 #(.ramSize(65536), .ramWide(8) ) memBlock6 (.clk(Clk), .data(inS6), .radd(addS6), .wadd(waddS6), .wren(wr6), .q(outS6) ); 
     //7
     ramOnChip64 #(.ramSize(65536), .ramWide(8) ) memBlock7 (.clk(Clk), .data(inS7), .radd(addS7), .wadd(waddS7), .wren(wr7), .q(outS7) );  
-    
     always_comb begin
         case(Wr)
             1'b0:begin

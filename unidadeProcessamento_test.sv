@@ -12,7 +12,8 @@ module unidadeProcessamento_test(
 	output logic [63:0] MemDataRegOut,
 	output logic 	[6:0] Instr6_0,
 	output logic 	LoadMDR,
-	output logic 	[2:0]MemToReg
+	output logic 	[63:0] SignalExtendOut,
+	output logic 	[31:0] Instr31_0
 	);
 	
 	logic 	[63:0] RegAIn, RegBIn;
@@ -20,8 +21,6 @@ module unidadeProcessamento_test(
 	logic 	[4:0] Instr19_15;
 	logic 	[4:0] Instr24_20;
 	logic 	[4:0] Instr11_7;
-	
-	logic 	[31:0] Instr31_0;
 
 	logic PCWrite;
 	logic PCWriteCond;
@@ -34,7 +33,7 @@ module unidadeProcessamento_test(
 	logic 	LoadRegB; 
 	logic 	LoadALUOut;
 	logic 	WriteReg;
-	
+	logic 	[2:0]MemToReg;
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
 	 
@@ -43,11 +42,11 @@ module unidadeProcessamento_test(
 	logic 	[63:0] PCIn;
 	logic 	[63:0] WriteData;
 	logic 	[63:0] RegAOut;
-	logic 	[63:0] SignalExtendOut;
 	logic 	[63:0] ShiftLeftOut;
 	logic 	zero;
 	logic 	[63:0] MuxAOut;
 	logic 	[63:0] MuxBOut;
+	logic 	[1:0] tam;
 	
 	logic [1:0]ShiftControl;
 	logic [63:0]DeslocamentoOut;
@@ -81,7 +80,7 @@ module unidadeProcessamento_test(
 		.PCWriteCond(PCWriteCond),
 		.instruction(IMemOut),
 		.state(state),
-		.ShiftControl(ShiftControl)
+		.tam(tam)
 	);
 
 	Registrador64 pc(
@@ -178,13 +177,14 @@ module unidadeProcessamento_test(
 		.Out(PCIn)
 	);
 
-	Memoria64 DataMemory(
+	Memoria64_test DataMemory(
 		.raddress(RegALUOutOut),
 		.waddress(RegALUOutOut),
 		.Clk(clk),
 		.Datain(RegBOut),
 		.Dataout(DataMemoryOut),
-		.Wr(DMemWrite)
+		.Wr(DMemWrite),
+		.tam(tam)
 	);
 
 	Registrador64 MemDataReg(
@@ -200,6 +200,7 @@ module unidadeProcessamento_test(
 		.In1(RegALUOutOut),
 		.In2(MemDataRegOut),
 		.In3(SignalExtendOut),
+		.In4(PCOut),
 		.In5(DeslocamentoOut),
 		.Out(WriteData)
 	);
@@ -221,7 +222,6 @@ module unidadeProcessamento_test(
 		.In3(ALUOut),
 		.Out(BranchOpOut)
 	);
-	
 	DivImm DivImm(
 		.Inst(Instr31_0),
 		.Out(ShiftN)
@@ -233,7 +233,6 @@ module unidadeProcessamento_test(
 		.N(ShiftN),
 		.Saida(DeslocamentoOut)
 	);
-	
 	always_comb begin
 		LoadPC <= ((BranchOpOut & PCWriteCond) | PCWrite);
 	end

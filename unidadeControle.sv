@@ -18,9 +18,9 @@ module unidadeControle (
 	output logic PCWriteCond,
 	input logic[31:0] instruction,
 	output logic [4:0] state,
-	output logic [1:0] ShiftControl
-);
-	
+	output logic [1:0] tam,
+	output logic [1:0]ShiftControl
+);	
 
 	parameter init_state = 0;
 	parameter decod = 1;  
@@ -38,9 +38,17 @@ module unidadeControle (
 	parameter blt_wpc = 13;
 	parameter bge_wpc = 14;
 	parameter and_reg = 15;
-	parameter slli = 16;
-	parameter srli = 17;
-	parameter srai = 18;
+	parameter write_mem_sd = 6;
+	parameter write_mem_sw = 16;
+	parameter write_mem_sh = 17;
+	parameter write_mem_sb = 18;
+	parameter slli = 19;
+	parameter srli = 20;
+	parameter srai = 21;
+	parameter nothing = 22;
+	parameter excecao = 23;
+	parameter jal_register = 24;
+	parameter jal_offset = 25;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -51,6 +59,8 @@ module unidadeControle (
 	parameter Utype = 7'b0110111;
 	parameter Add = 7'b0000000;
 	parameter Sub = 7'b0100000;
+	parameter Break = 7'b1110011;
+	parameter Jal = 7'b1101111;
 
 	always @(posedge clk) begin	
 		case(state)
@@ -91,8 +101,12 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-
+				tam <= 2'b00;
 				case(instruction[6:0])
+					Break:
+					begin
+						state <= nothing;
+					end
 					Rtype: //type r
 					begin
 						case(instruction[31:25])
@@ -105,11 +119,17 @@ module unidadeControle (
 									3'b111: begin
 										state <= and_reg;
 									end // and
+									default: begin
+										state <= excecao;
+									end
 								endcase
 							end
 							Sub: // sub
 							begin
 								state <= sub_reg; 	
+							end
+							default: begin
+								state <= excecao;
 							end
 						endcase
 					end
@@ -119,25 +139,54 @@ module unidadeControle (
 					end
 					Addi: //type i (ADDI)
 					begin
-						case(instruction[14:12])//verifica os shifts
-							3'b101: begin
-								case(instruction[31:26])
-									6'b000000: begin
-										state<=srli;
-									end // 6'b000000:
-									6'b01000: begin
-										state<=srai;
-									end // 6'b01000:
-								endcase
-							end // 3'b101:
-							3'b001: begin
-								state <= slli;
-							end 
-							3'b000: begin
-								state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
-							end 
-						endcase 
-						
+						case(instruction[11:7])
+							5'b00000: begin //Nop
+								PCWrite <= 0;
+								PCSrc <= 0;
+								ALUFunct <= 3'b000;
+								ALUSrcA <= 0;
+								ALUSrcB <= 2'b00;
+								LoadIR <= 0;
+
+								PCWriteCond <= 0;
+								LoadRegA <= 0;
+								LoadRegB <= 0;
+								LoadALUOut <=0;
+								WriteReg <= 0;
+								MemToReg <= 0;
+								LoadMDR <= 0;
+								DMemWrite <= 0;
+								IMemWrite <= 0;
+
+								state <= init_state;
+							end
+							default: begin
+								case(instruction[14:12])//verifica os shifts
+									3'b101: begin
+										case(instruction[31:26])
+											6'b000000: begin
+												state<=srli;
+											end // 6'b000000:
+											6'b01000: begin
+												state<=srai;
+											end // 6'b01000:
+											default: begin
+												state <= excecao;
+											end
+										endcase
+									end // 3'b101:
+									3'b001: begin
+										state <= slli;
+									end 
+									3'b000: begin
+										state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
+									end 
+									default: begin
+										state <= excecao;
+									end
+								endcase 
+							end
+						endcase
 					end
 					Ld: //type i (LD)
 					begin
@@ -151,7 +200,7 @@ module unidadeControle (
 					begin
 						state <= beq_wpc;
 					end
-					SBtype: //type sb
+					SBtype: //outros branchs - type sb
 					begin
 						case(instruction[14:12]) // funct3
 							3'b001: // BNE
@@ -166,10 +215,16 @@ module unidadeControle (
 							begin //BLT
 								state <= blt_wpc;
 							end
+							default: begin
+								state <= excecao;
+							end
 						endcase
-					end		
+					end
+					Jal: begin
+						state <= jal_register;
+					end	
 					default: begin
-						state <= 0; // TODO - tratar excessão
+						state <= excecao;
 					end
 				endcase
 			end
@@ -190,11 +245,27 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-
+				tam <= 2'b00;
 				case (instruction[6:0]) // sai de offset e vai para umas das funÃ§Ãµes
 					Stype: //type sd
 					begin
-						state <= write_mem; //calcula o OFFSET para o LOAD, STORE, E ADDI
+						case(instruction[14:12])
+							3'b111:begin
+								state <= write_mem_sd; //calcula o OFFSET para o LOAD, STORE, E ADDI
+							end // 3'b111:
+							3'b010:begin
+								state <= write_mem_sw;
+							end // 3'b010:
+							3'b001:begin
+								state <= write_mem_sh;
+							end // 3'b010:
+							3'b000:begin
+								state <= write_mem_sb;
+							end // 3'b010:
+							default: begin
+								state <= excecao;
+							end
+						endcase // instruction[6:0]
 					end
 					Addi: //type i (ADDI)
 					begin
@@ -205,7 +276,7 @@ module unidadeControle (
 						state <= read_mem; //calcula o OFFSET para o LOAD, STORE, E ADDI
 					end
 					default: begin  
-						state <= 0; // TODO - tratar excessão
+						state <= excecao; // TODO - tratar excessão
 					end		
 				endcase
 			end
@@ -226,7 +297,7 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-
+				tam <= 2'b00;
 				state <= add_wreg;
 			end	
 			sub_reg: begin
@@ -246,7 +317,7 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-
+				tam <= 2'b00;
 				state <= add_wreg;
 			end
 			and_reg: begin
@@ -254,7 +325,6 @@ module unidadeControle (
 				ALUSrcA <= 1;
 				ALUSrcB <= 2'b00;
 				LoadALUOut <=1;
-
 				PCWrite <= 0;
 				PCWriteCond <= 0;
 				PCSrc <= 0;
@@ -266,13 +336,12 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-
+				tam <= 2'b00;
 				state <= add_wreg;
 			end
 			read_mem: begin
 				LoadMDR <= 0; // obs
 				DMemWrite <= 0;
-
 				PCWrite <= 0;
 				PCWriteCond <= 0;
 				PCSrc <= 0;
@@ -286,10 +355,67 @@ module unidadeControle (
 				MemToReg <= 0;				
 				IMemWrite <= 0;
 				LoadIR <= 0;
-
+				tam <= 2'b00;
 				state <= ld_wreg;
 			end
-			write_mem: begin
+			write_mem_sd: begin
+				DMemWrite <= 1;
+				PCWrite <= 0;
+				PCWriteCond <= 0;
+				PCSrc <= 0;
+				ALUFunct <= 3'b000;
+				ALUSrcA <= 0;
+				ALUSrcB <= 2'b00;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				WriteReg <= 0;
+				MemToReg <= 0;
+				LoadMDR <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				tam <= 2'b00;
+				state<=init_state;
+			end
+			write_mem_sw: begin
+				DMemWrite <= 1;
+				PCWrite <= 0;
+				PCWriteCond <= 0;
+				PCSrc <= 0;
+				ALUFunct <= 3'b000;
+				ALUSrcA <= 0;
+				ALUSrcB <= 2'b00;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				WriteReg <= 0;
+				MemToReg <= 0;
+				LoadMDR <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				tam <= 2'b01;
+				state<=init_state;
+			end
+			write_mem_sh: begin
+				DMemWrite <= 1;
+				PCWrite <= 0;
+				PCWriteCond <= 0;
+				PCSrc <= 0;
+				ALUFunct <= 3'b000;
+				ALUSrcA <= 0;
+				ALUSrcB <= 2'b00;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				WriteReg <= 0;
+				MemToReg <= 0;
+				LoadMDR <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				tam <= 2'b10;
+				state<=init_state;
+			end
+			write_mem_sb: begin
 				DMemWrite <= 1;
 
 				PCWrite <= 0;
@@ -306,6 +432,7 @@ module unidadeControle (
 				LoadMDR <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
+				tam <= 2'b11;
 				state<=init_state;
 			end
 			lui: begin
@@ -325,7 +452,7 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-
+				tam <= 2'b00;
 				state <=init_state;
 			end 
 		 	beq_wpc: begin
@@ -346,7 +473,7 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-				
+				tam <= 2'b00;
 				state <= the_next_episode;
 		 	end // beq_wpc:
 		 	the_next_episode: begin
@@ -370,7 +497,7 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-				
+				tam <= 2'b00;
 				state <= the_next_episode;
 		 	end // bne_wpc:
 		 	blt_wpc: begin
@@ -391,7 +518,7 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-				
+				tam <= 2'b00;
 				state <= the_next_episode;
 		 	end // blt_wpc:
 		 	bge_wpc: begin
@@ -412,7 +539,7 @@ module unidadeControle (
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
-				
+				tam <= 2'b00;
 				state <= the_next_episode;
 		 	end // bge_wpc:
 		 	ld_wreg: begin
@@ -433,7 +560,7 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				BranchOp <= 0;
-
+				tam <= 2'b00;
 				state <= init_state;
 		 	end
 		 	add_wreg: begin
@@ -453,7 +580,7 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				BranchOp <= 0;
-
+				tam <= 2'b00;
 				state <= init_state;
 		 	end
 		 	slli: begin
@@ -461,7 +588,7 @@ module unidadeControle (
 		 		MemToReg <= 3'b100;
 		 		WriteReg <= 1;
 		 		state<=init_state;
-		 	end 
+		 	end
 		 	srli: begin
 		 		ShiftControl <= 2'b01;
 		 		MemToReg <= 3'b100;
@@ -474,12 +601,58 @@ module unidadeControle (
 		 		WriteReg <= 1;
 		 		state<=init_state;
 		 	end
+			nothing: begin
+				//Faz nada
+			end
+			jal_register: begin
+				MemToReg <= 3'b011;
+				WriteReg <= 1;
+
+				PCWrite <= 0;
+				PCSrc <= 0;
+				PCWriteCond <= 0;
+				ALUFunct <= 3'b000;
+				ALUSrcA <= 0;
+				ALUSrcB <= 2'b00;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				LoadMDR <= 0;
+				DMemWrite <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				BranchOp <= 0;
+				
+				state <= jal_offset;		
+			end
+			jal_offset: begin
+				PCWrite <= 1;
+				PCSrc <= 1'b1;
+
+				MemToReg <= 0;
+				WriteReg <= 0;
+				PCWriteCond <= 0;
+				ALUFunct <= 3'b000;
+				ALUSrcA <= 0;
+				ALUSrcB <= 2'b00;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				LoadMDR <= 0;
+				DMemWrite <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				BranchOp <= 0;
+
+				state <= the_next_episode;
+			end
+			excecao: begin
+				
+			end
 		 	default: begin
 		 		state <= 0;
 		 	end
+			
 		endcase
 	end 
-
-
-
 endmodule // uc.
