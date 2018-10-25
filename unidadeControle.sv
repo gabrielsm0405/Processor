@@ -46,6 +46,7 @@ module unidadeControle (
 	parameter slli = 19;
 	parameter srli = 20;
 	parameter srai = 21;
+	parameter nothing = 22;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -56,6 +57,7 @@ module unidadeControle (
 	parameter Utype = 7'b0110111;
 	parameter Add = 7'b0000000;
 	parameter Sub = 7'b0100000;
+	parameter Break = 7'b1110011;
 
 	always @(posedge clk) begin	
 		case(state)
@@ -98,6 +100,10 @@ module unidadeControle (
 				LoadIR <= 0;
 				tam <= 2'b00;
 				case(instruction[6:0])
+					Break:
+					begin
+						state <= nothing;
+					end
 					Rtype: //type r
 					begin
 						case(instruction[31:25])
@@ -554,6 +560,9 @@ module unidadeControle (
 		 		WriteReg <= 1;
 		 		state<=init_state;
 		 	end
+			nothing: begin
+				//Faz nada
+			end
 		 	default: begin
 		 		state <= 0;
 		 	end

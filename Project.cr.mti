@@ -101,6 +101,13 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity Instr_Reg_RISC_V
 -- Compiling architecture behavioral_arch of Instr_Reg_RISC_V
 
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/unidadeProcessamento_test.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/unidadeProcessamento_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module unidadeProcessamento_test
+
+Top level modules:
+	unidadeProcessamento_test
+
 } {} {}} C:/Users/gsm3/Desktop/Processor-master/Mux2.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Mux2.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module Mux2
