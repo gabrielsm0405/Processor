@@ -20,8 +20,7 @@ module unidadeControle (
 	output logic [4:0] state,
 	output logic [1:0] tam,
 	output logic [1:0]ShiftControl
-);
-	
+);	
 
 	parameter init_state = 0;
 	parameter decod = 1;  
@@ -48,6 +47,8 @@ module unidadeControle (
 	parameter srai = 21;
 	parameter nothing = 22;
 	parameter excecao = 23;
+	parameter jal_register = 24;
+	parameter jal_offset = 25;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -59,6 +60,7 @@ module unidadeControle (
 	parameter Add = 7'b0000000;
 	parameter Sub = 7'b0100000;
 	parameter Break = 7'b1110011;
+	parameter Jal = 7'b1101111;
 
 	always @(posedge clk) begin	
 		case(state)
@@ -217,7 +219,10 @@ module unidadeControle (
 								state <= excecao;
 							end
 						endcase
-					end		
+					end
+					Jal: begin
+						state <= jal_register;
+					end	
 					default: begin
 						state <= excecao;
 					end
@@ -599,12 +604,55 @@ module unidadeControle (
 			nothing: begin
 				//Faz nada
 			end
+			jal_register: begin
+				MemToReg <= 3'b011;
+				WriteReg <= 1;
+
+				PCWrite <= 0;
+				PCSrc <= 0;
+				PCWriteCond <= 0;
+				ALUFunct <= 3'b000;
+				ALUSrcA <= 0;
+				ALUSrcB <= 2'b00;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				LoadMDR <= 0;
+				DMemWrite <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				BranchOp <= 0;
+				
+				state <= jal_offset;		
+			end
+			jal_offset: begin
+				PCWrite <= 1;
+				PCSrc <= 1'b1;
+
+				MemToReg <= 0;
+				WriteReg <= 0;
+				PCWriteCond <= 0;
+				ALUFunct <= 3'b000;
+				ALUSrcA <= 0;
+				ALUSrcB <= 2'b00;
+				LoadRegA <= 0;
+				LoadRegB <= 0;
+				LoadALUOut <=0;
+				LoadMDR <= 0;
+				DMemWrite <= 0;
+				IMemWrite <= 0;
+				LoadIR <= 0;
+				BranchOp <= 0;
+
+				state <= the_next_episode;
+			end
 			excecao: begin
 				
 			end
 		 	default: begin
 		 		state <= 0;
 		 	end
+			
 		endcase
 	end 
 endmodule // uc.
