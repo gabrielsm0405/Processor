@@ -35,7 +35,7 @@ module unidadeProcessamento_test(
 	logic 	WriteReg;
 	logic 	[2:0]MemToReg;
 	logic 	LoadIR; 
-	logic 	IMemWrite;
+	logic 	IMemWrite; 
 	 
 	logic	[1:0]BranchOp;
 	
