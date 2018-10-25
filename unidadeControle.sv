@@ -242,6 +242,7 @@ module unidadeControle (
 				ALUSrcA <= 1;
 				ALUSrcB <= 2'b10;
 				LoadALUOut <=1;
+				LoadMDR <= 0; // obs
 
 				PCWrite <= 0;
 				PCWriteCond <= 0;
@@ -250,7 +251,6 @@ module unidadeControle (
 				LoadRegB <= 0;
 				WriteReg <= 0;
 				MemToReg <= 0;
-				LoadMDR <= 1; // obs
 				DMemWrite <= 0;
 				IMemWrite <= 0;
 				LoadIR <= 0;
@@ -333,7 +333,7 @@ module unidadeControle (
 				state <= add_wreg;
 			end
 			read_mem: begin
-				LoadMDR <= 0; // obs
+				LoadMDR <= 1; // obs
 				DMemWrite <= 0;
 				PCWrite <= 0;
 				PCWriteCond <= 0;
@@ -349,6 +349,9 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				tam <= 2'b00;
+				state <= 30;
+			end
+			30:begin
 				state <= ld_wreg;
 			end
 			write_mem: begin

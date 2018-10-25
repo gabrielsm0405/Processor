@@ -1,3 +1,6 @@
 addi x9,x0,80
-ld x11,0(x9)
+addi x10,x0,85
+addi x8,x0,20
+sd x10,0(x9)
+ld x11,0(x8)
 break
