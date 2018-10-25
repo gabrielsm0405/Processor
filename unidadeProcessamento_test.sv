@@ -181,14 +181,13 @@ module unidadeProcessamento_test(
 		.Out(PCIn)
 	);
 
-	Memoria64_test DataMemory(
+	Memoria64 DataMemory(
 		.raddress(RegALUOutOut),
 		.waddress(RegALUOutOut),
 		.Clk(clk),
 		.Datain(RegBOut),
 		.Dataout(DataMemoryOut),
-		.Wr(DMemWrite),
-		.tam(tam)
+		.Wr(DMemWrite)
 	);
 
 	Registrador64 MemDataReg(

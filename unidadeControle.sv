@@ -38,10 +38,6 @@ module unidadeControle (
 	parameter blt_wpc = 13;
 	parameter bge_wpc = 14;
 	parameter and_reg = 15;
-	parameter write_mem_sd = 6;
-	parameter write_mem_sw = 16;
-	parameter write_mem_sh = 17;
-	parameter write_mem_sb = 18;
 	parameter slli = 19;
 	parameter srli = 20;
 	parameter srai = 21;
@@ -262,23 +258,7 @@ module unidadeControle (
 				case (instruction[6:0]) // sai de offset e vai para umas das funÃ§Ãµes
 					Stype: //type sd
 					begin
-						case(instruction[14:12])
-							3'b111:begin
-								state <= write_mem_sd; //calcula o OFFSET para o LOAD, STORE, E ADDI
-							end // 3'b111:
-							3'b010:begin
-								state <= write_mem_sw;
-							end // 3'b010:
-							3'b001:begin
-								state <= write_mem_sh;
-							end // 3'b010:
-							3'b000:begin
-								state <= write_mem_sb;
-							end // 3'b010:
-							default: begin
-								state <= excecao;
-							end
-						endcase // instruction[6:0]
+						state <= write_mem; //calcula o OFFSET para o LOAD, STORE, E ADDI
 					end
 					Addi: //type i (ADDI)
 					begin
@@ -371,7 +351,7 @@ module unidadeControle (
 				tam <= 2'b00;
 				state <= ld_wreg;
 			end
-			write_mem_sd: begin
+			write_mem: begin
 				DMemWrite <= 1;
 				PCWrite <= 0;
 				PCWriteCond <= 0;
@@ -388,64 +368,6 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				tam <= 2'b00;
-				state<=init_state;
-			end
-			write_mem_sw: begin
-				DMemWrite <= 1;
-				PCWrite <= 0;
-				PCWriteCond <= 0;
-				PCSrc <= 0;
-				ALUFunct <= 3'b000;
-				ALUSrcA <= 0;
-				ALUSrcB <= 2'b00;
-				LoadRegA <= 0;
-				LoadRegB <= 0;
-				LoadALUOut <=0;
-				WriteReg <= 0;
-				MemToReg <= 0;
-				LoadMDR <= 0;
-				IMemWrite <= 0;
-				LoadIR <= 0;
-				tam <= 2'b01;
-				state<=init_state;
-			end
-			write_mem_sh: begin
-				DMemWrite <= 1;
-				PCWrite <= 0;
-				PCWriteCond <= 0;
-				PCSrc <= 0;
-				ALUFunct <= 3'b000;
-				ALUSrcA <= 0;
-				ALUSrcB <= 2'b00;
-				LoadRegA <= 0;
-				LoadRegB <= 0;
-				LoadALUOut <=0;
-				WriteReg <= 0;
-				MemToReg <= 0;
-				LoadMDR <= 0;
-				IMemWrite <= 0;
-				LoadIR <= 0;
-				tam <= 2'b10;
-				state<=init_state;
-			end
-			write_mem_sb: begin
-				DMemWrite <= 1;
-
-				PCWrite <= 0;
-				PCWriteCond <= 0;
-				PCSrc <= 0;
-				ALUFunct <= 3'b000;
-				ALUSrcA <= 0;
-				ALUSrcB <= 2'b00;
-				LoadRegA <= 0;
-				LoadRegB <= 0;
-				LoadALUOut <=0;
-				WriteReg <= 0;
-				MemToReg <= 0;
-				LoadMDR <= 0;
-				IMemWrite <= 0;
-				LoadIR <= 0;
-				tam <= 2'b11;
 				state<=init_state;
 			end
 			lui: begin
