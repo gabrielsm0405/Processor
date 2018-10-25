@@ -124,24 +124,31 @@ module unidadeControle (
 					end
 					Addi: //type i (ADDI)
 					begin
-						case(instruction[14:12])//verifica os shifts
-							3'b101: begin
-								case(instruction[31:26])
-									6'b000000: begin
-										state<=srli;
-									end // 6'b000000:
-									6'b01000: begin
-										state<=srai;
-									end // 6'b01000:
-								endcase
-							end // 3'b101:
-							3'b001: begin
-								state <= slli;
-							end 
-							3'b000: begin
-								state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
-							end 
-						endcase 
+						case(instruction[11:7])
+							5'b00000: begin //Nop
+								state <= init_state;
+							end
+							default: begin
+								case(instruction[14:12])//verifica os shifts
+									3'b101: begin
+										case(instruction[31:26])
+											6'b000000: begin
+												state<=srli;
+											end // 6'b000000:
+											6'b01000: begin
+												state<=srai;
+											end // 6'b01000:
+										endcase
+									end // 3'b101:
+									3'b001: begin
+										state <= slli;
+									end 
+									3'b000: begin
+										state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
+									end 
+								endcase 
+							end
+						endcase
 					end
 					Ld: //type i (LD)
 					begin
