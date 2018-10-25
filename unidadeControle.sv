@@ -47,10 +47,12 @@ module unidadeControle (
 	parameter srai = 21;
 	parameter nothing = 22;
 	parameter excecao = 23;
-	parameter jal_jalr_register = 24;
-	parameter jal_jalr_offset = 25;
-	parameter jalr_loadReg = 26;
-	parameter jalr_opImmReg = 27;
+	parameter jal_register = 24;
+	parameter jal_offset = 25;
+	
+
+	parameter slti=28;
+	parameter slt=29;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -121,6 +123,9 @@ module unidadeControle (
 									3'b111: begin
 										state <= and_reg;
 									end // and
+									3'b010: begin
+										state <= slt;
+									end 
 									default: begin
 										state <= excecao;
 									end
@@ -186,6 +191,9 @@ module unidadeControle (
 									default: begin
 										state <= excecao;
 									end
+									3'b010: begin
+										state <= slti;
+									end
 								endcase 
 							end
 						endcase
@@ -205,9 +213,6 @@ module unidadeControle (
 					SBtype: //outros branchs - type sb
 					begin
 						case(instruction[14:12]) // funct3
-							3'b000: begin// JALR
-								state <= jal_jalr_register;
-							end
 							3'b001: // BNE
 							begin
 								state <= bne_wpc; //volta pro comeÃ§o 	
@@ -226,7 +231,7 @@ module unidadeControle (
 						endcase
 					end
 					Jal: begin
-						state <= jal_jalr_register;
+						state <= jal_register;
 					end	
 					default: begin
 						state <= excecao;
@@ -609,7 +614,7 @@ module unidadeControle (
 			nothing: begin
 				//Faz nada
 			end
-			jal_jalr_register: begin
+			jal_register: begin
 				MemToReg <= 3'b011;
 				WriteReg <= 1;
 
@@ -628,16 +633,9 @@ module unidadeControle (
 				LoadIR <= 0;
 				BranchOp <= 0;
 				
-				case(instruction[6:0])
-					SBtype: begin
-						state <= jalr_loadReg;
-					end
-					default begin
-						state <=jal_jalr_offset;
-					end
-				endcase		
+				state <= jal_offset;		
 			end
-			jal_jalr_offset: begin
+			jal_offset: begin
 				PCWrite <= 1;
 				PCSrc <= 1'b1;
 
@@ -658,52 +656,24 @@ module unidadeControle (
 
 				state <= the_next_episode;
 			end
-			jalr_loadReg: begin
-				LoadRegA <= 1;
-
-
-				MemToReg <= 0;
-				WriteReg <= 0;
-				PCWriteCond <= 0;
-				ALUFunct <= 3'b000;
-				ALUSrcA <= 0;
-				ALUSrcB <= 2'b00;
-				PCWrite <= 0;
-				PCSrc <= 0;
-				LoadRegB <= 0;
-				LoadALUOut <=0;
-				LoadMDR <= 0;
-				DMemWrite <= 0;
-				IMemWrite <= 0;
-				LoadIR <= 0;
-				BranchOp <= 0;
-
-				state <= jalr_opImmReg;
-			end
-			jalr_opImmReg: begin
-				ALUSrcA <= 1;
-				ALUSrcB <= 2'b11;
-				ALUFunct <= 3'b001;
-				LoadALUOut <= 1;
-				
-
-				LoadRegA <= 0;
-				MemToReg <= 0;
-				WriteReg <= 0;
-				PCWriteCond <= 0;
-				PCWrite <= 0;
-				PCSrc <= 0;
-				LoadRegB <= 0;
-				LoadMDR <= 0;
-				DMemWrite <= 0;
-				IMemWrite <= 0;
-				LoadIR <= 0;
-				BranchOp <= 0;
-
-				state <= jal_jalr_offset;
-			end
 			excecao: begin
 				
+			end
+			slti: begin
+				ALUSrcA<=2'b01;
+				ALUSrcB<=2'b10;
+				ALUFunct<=3'b010;
+				MemToReg<=3'b101;
+				WriteReg<=1;
+				state <= init_state;
+			end
+			slt: begin
+				ALUSrcA<=2'b01;
+				ALUSrcB<=2'b00;
+				ALUFunct<=3'b010;
+				MemToReg<=3'b101;
+				WriteReg<=1;
+				state <= init_state;
 			end
 		 	default: begin
 		 		state <= 0;

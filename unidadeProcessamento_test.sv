@@ -35,7 +35,7 @@ module unidadeProcessamento_test(
 	logic 	WriteReg;
 	logic 	[2:0]MemToReg;
 	logic 	LoadIR; 
-	logic 	IMemWrite; 
+	logic 	IMemWrite;
 	 
 	logic	[1:0]BranchOp;
 	
@@ -44,6 +44,8 @@ module unidadeProcessamento_test(
 	logic 	[63:0] RegAOut;
 	logic 	[63:0] ShiftLeftOut;
 	logic 	zero;
+	logic   Menor;
+	logic   Overflow;
 	logic 	[63:0] MuxAOut;
 	logic 	[63:0] MuxBOut;
 	logic 	[1:0] tam;
@@ -159,7 +161,9 @@ module unidadeProcessamento_test(
 		.B(MuxBOut),
 		.Seletor(ALUFunct),
 		.S(ALUOut),
-		.z(zero)
+		.z(zero),
+		.Menor(Menor),
+		.Overflow(Overflow)
 	);
 
 	Registrador64 RegALUOut(
@@ -202,6 +206,7 @@ module unidadeProcessamento_test(
 		.In3(SignalExtendOut),
 		.In4(PCOut),
 		.In5(DeslocamentoOut),
+		.In6(Menor),
 		.Out(WriteData)
 	);
 
