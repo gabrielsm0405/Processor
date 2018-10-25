@@ -11,7 +11,9 @@ module unidadeProcessamento_test(
 	output logic [63:0] DataMemoryOut,
 	output logic [63:0] MemDataRegOut,
 	output logic 	[6:0] Instr6_0,
-	output logic 	LoadMDR
+	output logic 	LoadMDR,
+	output logic 	[63:0] SignalExtendOut,
+	output logic 	[31:0] Instr31_0
 	);
 	
 	logic 	[63:0] RegAIn, RegBIn;
@@ -19,8 +21,6 @@ module unidadeProcessamento_test(
 	logic 	[4:0] Instr19_15;
 	logic 	[4:0] Instr24_20;
 	logic 	[4:0] Instr11_7;
-	
-	logic 	[31:0] Instr31_0;
 
 	logic PCWrite;
 	logic PCWriteCond;
@@ -42,7 +42,6 @@ module unidadeProcessamento_test(
 	logic 	[63:0] PCIn;
 	logic 	[63:0] WriteData;
 	logic 	[63:0] RegAOut;
-	logic 	[63:0] SignalExtendOut;
 	logic 	[63:0] ShiftLeftOut;
 	logic 	zero;
 	logic 	[63:0] MuxAOut;
@@ -81,7 +80,6 @@ module unidadeProcessamento_test(
 		.PCWriteCond(PCWriteCond),
 		.instruction(IMemOut),
 		.state(state),
-		.ShiftControl(ShiftControl),
 		.tam(tam)
 	);
 

@@ -47,11 +47,12 @@ module unidadeControle (
 	parameter srli = 20;
 	parameter srai = 21;
 	parameter nothing = 22;
+	parameter excecao = 23;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
 	parameter SBtype = 7'b1100111;
-	parameter SBBeq = 7'b1100011;
+	parameter SBBeq = 7'b1100111;
 	parameter Addi = 7'b0010011;
 	parameter Ld = 7'b0000011;
 	parameter Utype = 7'b0110111;
@@ -116,11 +117,17 @@ module unidadeControle (
 									3'b111: begin
 										state <= and_reg;
 									end // and
+									default: begin
+										state <= excecao;
+									end
 								endcase
 							end
 							Sub: // sub
 							begin
 								state <= sub_reg; 	
+							end
+							default: begin
+								state <= excecao;
 							end
 						endcase
 					end
@@ -132,6 +139,23 @@ module unidadeControle (
 					begin
 						case(instruction[11:7])
 							5'b00000: begin //Nop
+								PCWrite <= 0;
+								PCSrc <= 0;
+								ALUFunct <= 3'b000;
+								ALUSrcA <= 0;
+								ALUSrcB <= 2'b00;
+								LoadIR <= 0;
+
+								PCWriteCond <= 0;
+								LoadRegA <= 0;
+								LoadRegB <= 0;
+								LoadALUOut <=0;
+								WriteReg <= 0;
+								MemToReg <= 0;
+								LoadMDR <= 0;
+								DMemWrite <= 0;
+								IMemWrite <= 0;
+
 								state <= init_state;
 							end
 							default: begin
@@ -144,6 +168,9 @@ module unidadeControle (
 											6'b01000: begin
 												state<=srai;
 											end // 6'b01000:
+											default: begin
+												state <= excecao;
+											end
 										endcase
 									end // 3'b101:
 									3'b001: begin
@@ -152,6 +179,9 @@ module unidadeControle (
 									3'b000: begin
 										state <= cal_offset; //calcula o OFFSET para o LOAD, STORE, E ADDI
 									end 
+									default: begin
+										state <= excecao;
+									end
 								endcase 
 							end
 						endcase
@@ -183,10 +213,13 @@ module unidadeControle (
 							begin //BLT
 								state <= blt_wpc;
 							end
+							default: begin
+								state <= excecao;
+							end
 						endcase
 					end		
 					default: begin
-						state <= 0; // TODO - tratar excessão
+						state <= excecao;
 					end
 				endcase
 			end
@@ -224,6 +257,9 @@ module unidadeControle (
 							3'b000:begin
 								state <= write_mem_sb;
 							end // 3'b010:
+							default: begin
+								state <= excecao;
+							end
 						endcase // instruction[6:0]
 					end
 					Addi: //type i (ADDI)
@@ -235,7 +271,7 @@ module unidadeControle (
 						state <= read_mem; //calcula o OFFSET para o LOAD, STORE, E ADDI
 					end
 					default: begin  
-						state <= 0; // TODO - tratar excessão
+						state <= excecao; // TODO - tratar excessão
 					end		
 				endcase
 			end
@@ -541,13 +577,13 @@ module unidadeControle (
 				BranchOp <= 0;
 				tam <= 2'b00;
 				state <= init_state;
-		 	end		 
+		 	end
 		 	slli: begin
 		 		ShiftControl <= 2'b00;
 		 		MemToReg <= 3'b100;
 		 		WriteReg <= 1;
 		 		state<=init_state;
-		 	end 
+		 	end
 		 	srli: begin
 		 		ShiftControl <= 2'b01;
 		 		MemToReg <= 3'b100;
@@ -563,12 +599,12 @@ module unidadeControle (
 			nothing: begin
 				//Faz nada
 			end
+			excecao: begin
+				
+			end
 		 	default: begin
 		 		state <= 0;
 		 	end
 		endcase
 	end 
-
-
-
 endmodule // uc.
