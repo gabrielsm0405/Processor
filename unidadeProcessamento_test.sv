@@ -33,7 +33,7 @@ module unidadeProcessamento_test(
 	logic 	LoadRegB; 
 	logic 	LoadALUOut;
 	logic 	WriteReg;
-	logic 	[1:0]MemToReg;
+	logic 	[2:0]MemToReg;
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
 	 

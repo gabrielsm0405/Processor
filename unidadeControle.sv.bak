@@ -148,6 +148,7 @@ module unidadeControle (
 									end 
 								endcase 
 							end
+						endcase
 					end
 					Ld: //type i (LD)
 					begin

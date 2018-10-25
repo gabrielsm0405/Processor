@@ -9,7 +9,7 @@ module unidadeControle (
 	output logic LoadRegB,
 	output logic LoadALUOut,
 	output logic WriteReg,
-	output logic [1:0] MemToReg,
+	output logic [2:0] MemToReg,
 	output logic LoadIR,
 	output logic IMemWrite,
 	output logic DMemWrite,
