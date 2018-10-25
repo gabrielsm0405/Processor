@@ -81,6 +81,7 @@ module unidadeProcessamento_test(
 		.PCWriteCond(PCWriteCond),
 		.instruction(IMemOut),
 		.state(state),
+		.ShiftControl(ShiftControl),
 		.tam(tam)
 	);
 
