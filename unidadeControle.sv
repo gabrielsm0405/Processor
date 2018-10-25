@@ -52,7 +52,7 @@ module unidadeControle (
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
 	parameter SBtype = 7'b1100111;
-	parameter SBBeq = 7'b1100111;
+	parameter SBBeq = 7'b1100011;
 	parameter Addi = 7'b0010011;
 	parameter Ld = 7'b0000011;
 	parameter Utype = 7'b0110111;
@@ -198,7 +198,7 @@ module unidadeControle (
 					begin
 						state <= beq_wpc;
 					end
-					SBtype: //type sb
+					SBtype: //outros branchs - type sb
 					begin
 						case(instruction[14:12]) // funct3
 							3'b001: // BNE

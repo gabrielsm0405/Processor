@@ -42,8 +42,24 @@ module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
 					end
 				endcase
 			end
-			7'b1100111: begin //tipo i e tipo sb
-				/*case(Inst[14:12])
+			7'b1100011: begin // estado apenas pro BEQ
+				Out[11] <= Inst[7];
+				Out[4:1] <= Inst[11:8];
+				Out[10:5] <= Inst[30:25];
+				Out[12] <= Inst[31];
+				Out[0] <= 1'b0;
+				case(Inst[31])
+					1: begin
+						Out[63:13] <=  51'b111111111111111111111111111111111111111111111111111;
+					end
+					default:
+					begin
+						Out[63:13] <= 51'b000000000000000000000000000000000000000000000000000;
+					end
+				endcase				
+			end
+			7'b1100111: begin //tipo i e tipo sb BRANCHS E JALR
+				case(Inst[14:12])
 					3'b000: begin //jalr
 						Out[11:0] <= Inst[31:20];
 						case(Inst[31])
@@ -55,8 +71,8 @@ module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
 								Out[63:12] <= 52'b0000000000000000000000000000000000000000000000000000;
 							end
 						endcase
-					end // 3'b000:*/
-					//default: begin 
+					end // 3'b000:
+					default: begin //branchs
 						Out[11] <= Inst[7];
 						Out[4:1] <= Inst[11:8];
 						Out[10:5] <= Inst[30:25];
@@ -71,8 +87,8 @@ module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
 								Out[63:13] <= 51'b000000000000000000000000000000000000000000000000000;
 							end
 						endcase
-					//end
-				//endcase // Inst[14:12]
+					end
+				endcase // Inst[14:12]
 					
 			end
 			7'b0110111: begin
