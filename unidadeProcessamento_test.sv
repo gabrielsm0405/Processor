@@ -200,6 +200,7 @@ module unidadeProcessamento_test(
 		.In1(RegALUOutOut),
 		.In2(MemDataRegOut),
 		.In3(SignalExtendOut),
+		.In4(PCOut),
 		.In5(DeslocamentoOut),
 		.Out(WriteData)
 	);

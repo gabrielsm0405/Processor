@@ -1,0 +1,684 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/17.0
+vantigo_UC
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1540488045
+!i10b 1
+!s100 Sf0`S9:07>Ck[Pc^LFb?W1
+IH:Po2gnhKZkb:Sm39TL>_2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 antigo_UC_sv_unit
+S1
+Z3 dC:/Users/phos/Downloads/Processor-master/Processor-master
+Z4 w1540482984
+8C:/Users/phos/Downloads/Processor-master/Processor-master/antigo_UC.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/antigo_UC.sv
+L0 1
+Z5 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z6 !s108 1540488045.000000
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/antigo_UC.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/antigo_UC.sv|
+!i113 1
+Z7 o-work work -sv
+Z8 tCvgOpt 0
+nantigo_@u@c
+Ebanco_reg64
+R4
+Z9 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z10 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R3
+Z11 8C:/Users/phos/Downloads/Processor-master/Processor-master/Banco_reg64.vhd
+Z12 FC:/Users/phos/Downloads/Processor-master/Processor-master/Banco_reg64.vhd
+l0
+L60
+VSLaJCzeZce_0GzKbWY;8g0
+!s100 BITDedo[VJC1IJdPQYGHO2
+Z13 OV;C;10.5b;63
+32
+R1
+!i10b 1
+R6
+Z14 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Banco_reg64.vhd|
+Z15 !s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Banco_reg64.vhd|
+!i113 1
+Z16 o-work work -2002 -explicit
+Z17 tExplicit 1 CvgOpt 0
+Abehavioral_arch
+R9
+R10
+DEx4 work 11 banco_reg64 0 22 SLaJCzeZce_0GzKbWY;8g0
+l110
+L76
+VYYP5ViC45o`zm`3I?1ldf3
+!s100 igVgYPe;J91BZD=CG8]DG2
+R13
+32
+R1
+!i10b 1
+R6
+R14
+R15
+!i113 1
+R16
+R17
+vDeslocamento
+R0
+R1
+!i10b 1
+!s100 EMH`UB_G1bTeiVdfJ^^>l1
+IEV0FIRBA?WSDI=lNAnO;90
+R2
+!s105 Deslocamento_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Deslocamento.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Deslocamento.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Deslocamento.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Deslocamento.sv|
+!i113 1
+R7
+R8
+n@deslocamento
+vDivImm
+R0
+Z18 !s110 1540488046
+!i10b 1
+!s100 59CGAa^cCC5V>FnjDU6SL1
+I2UQ8h;dB]jU25OVQQ:42E3
+R2
+!s105 DivImm_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/DivImm.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/DivImm.sv
+L0 1
+R5
+r1
+!s85 0
+31
+Z19 !s108 1540488046.000000
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/DivImm.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/DivImm.sv|
+!i113 1
+R7
+R8
+n@div@imm
+Einstr_reg_risc_v
+R4
+R9
+R10
+R3
+Z20 8C:/Users/phos/Downloads/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd
+Z21 FC:/Users/phos/Downloads/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd
+l0
+L49
+V7TD3cNADG8G:ODlTSzz?c1
+!s100 HF;HEc4<o>]o3`Jjc=WPJ2
+R13
+32
+R18
+!i10b 1
+R19
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd|
+Z23 !s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd|
+!i113 1
+R16
+R17
+Abehavioral_arch
+R9
+R10
+DEx4 work 16 instr_reg_risc_v 0 22 7TD3cNADG8G:ODlTSzz?c1
+l68
+L65
+Vo8SZoo^`iHF7`CU3CnhD`1
+!s100 e?bWG@:SnkVC476;`5UQ[1
+R13
+32
+R18
+!i10b 1
+R19
+R22
+R23
+!i113 1
+R16
+R17
+vLimitador
+R0
+R18
+!i10b 1
+!s100 @iZ:QO76RDki1>f6ha@J_2
+I5`L2mzaFB`>=DO=WgMf1H2
+R2
+!s105 Limitador_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Limitador.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Limitador.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Limitador.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Limitador.sv|
+!i113 1
+R7
+R8
+n@limitador
+vMemoria32
+R0
+R18
+!i10b 1
+!s100 hPbC5DKW>XGGBZK3PRddD1
+IoIC>_LXmlLT[zJW3=JK2^3
+R2
+!s105 Memoria32_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria32.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Memoria32.sv
+Z24 L0 26
+R5
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria32.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria32.sv|
+!i113 1
+R7
+R8
+n@memoria32
+vMemoria64
+R0
+R18
+!i10b 1
+!s100 1fz3Mgbi`W1QjWk]9CgUO3
+I:3zOKLfT`a_BVK1Z=KcfI3
+R2
+!s105 Memoria64_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64.sv
+R24
+R5
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64.sv|
+!i113 1
+R7
+R8
+n@memoria64
+vMemoria64_test
+R0
+R18
+!i10b 1
+!s100 D_Qhg<VVmQhhZ8@F=Cf?d3
+I]QRSO0ADY0E8LjiTE62]51
+R2
+!s105 Memoria64_test_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64_test.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64_test.sv
+R24
+R5
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64_test.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64_test.sv|
+!i113 1
+R7
+R8
+n@memoria64_test
+vmux
+R0
+R18
+!i10b 1
+!s100 N>AG?Pok0cj<eXPJBVkmm1
+I7;bY29jfPP`9=eKhmmkCT0
+R2
+!s105 mux_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/mux.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/mux.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/mux.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/mux.sv|
+!i113 1
+R7
+R8
+vMux1
+R0
+Z25 !s110 1540488047
+!i10b 1
+!s100 FJ^EhW60W[m3P?6L0kah]0
+I4mSILHjHH45EXVVWCoJLC0
+R2
+!s105 Mux1_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Mux1.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Mux1.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Mux1.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Mux1.sv|
+!i113 1
+R7
+R8
+n@mux1
+vMux2
+R0
+R25
+!i10b 1
+!s100 3ET?ShR[zDzE::ge3GB:F1
+IAS;h>N]?Tg?UF]b9MFgQQ1
+R2
+!s105 Mux2_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv
+L0 1
+R5
+r1
+!s85 0
+31
+Z26 !s108 1540488047.000000
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv|
+!i113 1
+R7
+R8
+n@mux2
+vMux3
+R0
+R25
+!i10b 1
+!s100 ?Kn<N[`S0O6MnF?QGEnnK1
+I>_V6jPbGI@i?5KW0FGXQL3
+R2
+!s105 Mux3_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Mux3.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Mux3.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Mux3.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Mux3.sv|
+!i113 1
+R7
+R8
+n@mux3
+vMux4
+R0
+R25
+!i10b 1
+!s100 LdGKo723hE14IILRc3=5_3
+ISLTzHYQozH[n@2nN9MBD[1
+R2
+!s105 Mux4_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Mux4.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Mux4.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Mux4.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Mux4.sv|
+!i113 1
+R7
+R8
+n@mux4
+vMux8
+R0
+R25
+!i10b 1
+!s100 Jia_NnPTSg61NG2<aYmJ@0
+IPQVih3JDlbVk?Hia9iVBU1
+R2
+!s105 Mux8_sv_unit
+S1
+R3
+w1540487027
+8C:/Users/phos/Downloads/Processor-master/Processor-master/Mux8.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/Mux8.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Mux8.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Mux8.sv|
+!i113 1
+R7
+R8
+n@mux8
+vramOnChip
+R25
+!i10b 1
+!s100 P4USifFT`a0_oGX`1Kg7;3
+I<BZAV5`ji5QN@T2d[[VW12
+R2
+R3
+Z27 w1540482985
+8C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip32.v
+FC:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip32.v
+Z28 L0 40
+R5
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip32.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip32.v|
+!i113 1
+Z29 o-work work
+R8
+nram@on@chip
+vramOnChip64
+R25
+!i10b 1
+!s100 cocMaFKEzGMH4F3EWeV]X1
+Ig:l@:J`Kb`BTRd13zLmSa3
+R2
+R3
+R27
+8C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip64.v
+FC:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip64.v
+R28
+R5
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip64.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip64.v|
+!i113 1
+R29
+R8
+nram@on@chip64
+Eregistrador64
+R4
+R9
+R10
+R3
+Z30 8C:/Users/phos/Downloads/Processor-master/Processor-master/Registrador64.vhd
+Z31 FC:/Users/phos/Downloads/Processor-master/Processor-master/Registrador64.vhd
+l0
+L60
+VJ4Xc878WG9Fn6PE9WAWCU2
+!s100 1Ni>HCfE:SM9Y0joFaf551
+R13
+32
+Z32 !s110 1540488048
+!i10b 1
+Z33 !s108 1540488048.000000
+Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/Registrador64.vhd|
+Z35 !s107 C:/Users/phos/Downloads/Processor-master/Processor-master/Registrador64.vhd|
+!i113 1
+R16
+R17
+Abehavioral_arch
+R9
+R10
+DEx4 work 13 registrador64 0 22 J4Xc878WG9Fn6PE9WAWCU2
+l73
+L72
+Vc8dGnRe:ddFaYRFWDjcYI3
+!s100 4^JUNO7Y7RQ6TBl6jYS@i0
+R13
+32
+R32
+!i10b 1
+R33
+R34
+R35
+!i113 1
+R16
+R17
+vShiftLeft
+R0
+R32
+!i10b 1
+!s100 MPcDjCB>H7m>8Dc][2HPg0
+Ic;C=W[d=1l?JiWM5<<PG_1
+R2
+!s105 ShiftLeft_sv_unit
+S1
+R3
+R4
+8C:/Users/phos/Downloads/Processor-master/Processor-master/ShiftLeft.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/ShiftLeft.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R33
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/ShiftLeft.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/ShiftLeft.sv|
+!i113 1
+R7
+R8
+n@shift@left
+vSignalExtend
+R0
+R32
+!i10b 1
+!s100 KWZlF8gO2^hYdZWRJDQh00
+IVc=M=ZWX6V2I;6;lMneDF3
+R2
+!s105 SignalExtend_sv_unit
+S1
+R3
+w1540487034
+8C:/Users/phos/Downloads/Processor-master/Processor-master/SignalExtend.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/SignalExtend.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R33
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/SignalExtend.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/SignalExtend.sv|
+!i113 1
+R7
+R8
+n@signal@extend
+vsimulacao
+R0
+R32
+!i10b 1
+!s100 4do_PU_J3gPabi@ZWBLbZ1
+Io[c]:SnLFzle5:bzg]JXQ3
+R2
+!s105 simulacao_sv_unit
+S1
+R3
+R27
+8C:/Users/phos/Downloads/Processor-master/Processor-master/simulacao.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/simulacao.sv
+L0 3
+R5
+r1
+!s85 0
+31
+R33
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/simulacao.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/simulacao.sv|
+!i113 1
+R7
+R8
+vuc
+R0
+R25
+!i10b 1
+!s100 k:??:S6R3gDaBUe>RYNPg2
+IjMdUP[>?XQ5MRe>DO6FRW3
+R2
+!s105 processor_sv_unit
+S1
+R3
+R27
+8C:/Users/phos/Downloads/Processor-master/Processor-master/processor.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/processor.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/processor.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/processor.sv|
+!i113 1
+R7
+R8
+Eula64
+R27
+Z36 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+R9
+R10
+R3
+Z37 8C:/Users/phos/Downloads/Processor-master/Processor-master/ula64.vhd
+Z38 FC:/Users/phos/Downloads/Processor-master/Processor-master/ula64.vhd
+l0
+L54
+VNKCl_dCU9VZRibAm_Jh<Y0
+!s100 gXP0QOjWED7GdgGCHP44]0
+R13
+32
+R32
+!i10b 1
+R33
+Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/ula64.vhd|
+Z40 !s107 C:/Users/phos/Downloads/Processor-master/Processor-master/ula64.vhd|
+!i113 1
+R16
+R17
+Abehavioral
+R36
+R9
+R10
+DEx4 work 5 ula64 0 22 NKCl_dCU9VZRibAm_Jh<Y0
+l80
+L70
+V0bJGE`7Xojm<X>7FGncTL1
+!s100 DoJmkJ?1Y9Zk;7@A7oGLb2
+R13
+32
+R32
+!i10b 1
+R33
+R39
+R40
+!i113 1
+R16
+R17
+vunidadeControle
+R0
+R32
+!i10b 1
+!s100 3931MliSLi5l3Oo3<iYCG0
+I_3k78O?<_73cTQDJ]2CdB0
+R2
+!s105 unidadeControle_sv_unit
+S1
+R3
+w1540488041
+8C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeControle.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/unidadeControle.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R33
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeControle.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeControle.sv|
+!i113 1
+R7
+R8
+nunidade@controle
+vunidadeProcessamento_test
+R0
+R32
+!i10b 1
+!s100 8af]K1L?<:<=62_3oXNTW2
+IL0lbddNQkHO:3:D36HNI<3
+R2
+!s105 unidadeProcessamento_test_sv_unit
+S1
+R3
+w1540487033
+8C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeProcessamento_test.sv
+FC:/Users/phos/Downloads/Processor-master/Processor-master/unidadeProcessamento_test.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R33
+!s107 C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeProcessamento_test.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeProcessamento_test.sv|
+!i113 1
+R7
+R8
+nunidade@processamento_test

@@ -91,7 +91,7 @@ module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
 				endcase // Inst[14:12]
 					
 			end
-			7'b0110111: begin
+			7'b0110111: begin 
 				Out[11:0] <= 12'b000000000000;
 				Out[31:12] <= Inst[31:12];
 				case(Inst[31]) 
@@ -105,6 +105,13 @@ module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
 				endcase
 			end
 			7'b1101111: begin //jal
+				Out[20] <= Inst[31];
+				Out[10:1] <= Inst[30:21];
+				Out[11] <= Inst[20];
+				Out[19:12] <= Inst[19:12];
+
+				Out[0] <=1'b0;
+
 				case(Inst[31])
 					1: begin
 						Out[63:21] <= 43'b1111111111111111111111111111111111111111111;
@@ -115,12 +122,6 @@ module SignalExtend(input logic [31:0] Inst, output logic [63:0] Out);
 					end
 				endcase
 
-				Out[20] <= Inst[31];
-				Out[10:1] <= Inst[30:21];
-				Out[11] <= Inst[20];
-				Out[19:12] <= Inst[19:12];
-
-				Out[0] <=1'b0;
 			end
 		endcase
 		
