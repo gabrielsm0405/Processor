@@ -29,7 +29,7 @@ module Memoria64_test
      input wire     Clk,         
      input wire     [63:0]Datain,
      output wire	[63:0]Dataout,
-     input logic     Wr,
+     input logic    Wr,
      input logic     [1:0]tam
     );
     

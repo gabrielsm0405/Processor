@@ -11,13 +11,15 @@ module simulacao;
     logic [63:0] RegALUOutOut;
     logic DMemWrite;
     logic [2:0]ALUFunct;
-    logic[4:0] state;
+    logic[5:0] state;
     logic[63:0]RegBOut;
     logic [63:0] DataMemoryOut;
     logic [63:0] MemDataRegOut;
     logic [6:0] Instr6_0;
     logic [63:0] SignalExtendOut;
     logic [31:0] Instr31_0;
+    logic [63:0] SelectStoreOut;
+    logic [63:0]RegStoreOut;
 
     unidadeProcessamento_test test (
         .clk(clk),        
@@ -33,12 +35,14 @@ module simulacao;
         .MemDataRegOut(MemDataRegOut),
         .Instr6_0(Instr6_0),
 	.SignalExtendOut(SignalExtendOut),
-	.Instr31_0(Instr31_0)
+	.Instr31_0(Instr31_0),
+    .SelectStoreOut(SelectStoreOut),
+    .RegStoreOut(RegStoreOut)
 	); 
 
     initial begin 
         clk = 1'b1;
-        $monitor($time,"PC: %d, Estado: %d, SignalExtendIn: %b, SiginalExtendOut:  %b, OPCode: %b", Out, state, Instr31_0, SignalExtendOut, Instr6_0);  
+        $monitor($time,"PC: %d, Estado: %d, SelectOut: %b, MemOut: %b, Alu: %d, RegStoreOut: %b", Out, state, SelectStoreOut, MemDataRegOut, RegALUOutOut, RegStoreOut);  
         Reset = 1'b0;
         #(CLKPERIOD)
         Reset = 1'b1;

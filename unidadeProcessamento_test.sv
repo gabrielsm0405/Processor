@@ -5,7 +5,7 @@ module unidadeProcessamento_test(
 	output logic [2:0] ALUFunct,
 	output logic DMemWrite,
 	output logic [63:0] ALUOut,
-	output logic [4:0] state,
+	output logic [5:0] state,
 	output logic [63:0] RegALUOutOut,
 	output logic [63:0] RegBOut,
 	output logic [63:0] DataMemoryOut,
@@ -13,7 +13,9 @@ module unidadeProcessamento_test(
 	output logic 	[6:0] Instr6_0,
 	output logic 	LoadMDR,
 	output logic 	[63:0] SignalExtendOut,
-	output logic 	[31:0] Instr31_0
+	output logic 	[31:0] Instr31_0,
+	output logic 	[63:0]SelectStoreOut,
+	output logic [63:0]RegStoreOut
 	);
 	
 	logic 	[63:0] RegAIn, RegBIn;
@@ -38,12 +40,16 @@ module unidadeProcessamento_test(
 	logic 	IMemWrite; 
 	 
 	logic	[1:0]BranchOp;
-	
+
+	logic LoadRegStore;
+
 	logic 	[63:0] PCIn;
 	logic 	[63:0] WriteData;
 	logic 	[63:0] RegAOut;
 	logic 	[63:0] ShiftLeftOut;
 	logic 	zero;
+	logic   Menor;
+	logic   Overflow;
 	logic 	[63:0] MuxAOut;
 	logic 	[63:0] MuxBOut;
 	logic 	[1:0] tam;
@@ -80,7 +86,8 @@ module unidadeProcessamento_test(
 		.PCWriteCond(PCWriteCond),
 		.instruction(IMemOut),
 		.state(state),
-		.tam(tam)
+		.tam(tam),
+		.LoadRegStore(LoadRegStore)
 	);
 
 	Registrador64 pc(
@@ -159,7 +166,9 @@ module unidadeProcessamento_test(
 		.B(MuxBOut),
 		.Seletor(ALUFunct),
 		.S(ALUOut),
-		.z(zero)
+		.z(zero),
+		.Menor(Menor),
+		.Overflow(Overflow)
 	);
 
 	Registrador64 RegALUOut(
@@ -177,14 +186,28 @@ module unidadeProcessamento_test(
 		.Out(PCIn)
 	);
 
-	Memoria64_test DataMemory(
+	StoreSelect seletorStore(
+		.Inst(Instr31_0),
+		.MemIn(DataMemoryOut),
+		.RegIn(RegBOut),
+		.Out(SelectStoreOut)
+	);
+
+	Registrador64 RegStore(
+		.Clk(clk),
+		.Reset(Reset),
+		.Load(LoadRegStore),
+		.Entrada(SelectStoreOut),
+		.Saida(RegStoreOut)
+	);
+
+	Memoria64 DataMemory(
 		.raddress(RegALUOutOut),
 		.waddress(RegALUOutOut),
 		.Clk(clk),
-		.Datain(RegBOut),
+		.Datain(RegStoreOut),
 		.Dataout(DataMemoryOut),
-		.Wr(DMemWrite),
-		.tam(tam)
+		.Wr(DMemWrite)
 	);
 
 	Registrador64 MemDataReg(
@@ -202,6 +225,7 @@ module unidadeProcessamento_test(
 		.In3(SignalExtendOut),
 		.In4(PCOut),
 		.In5(DeslocamentoOut),
+		.In6(Menor),
 		.Out(WriteData)
 	);
 
@@ -234,7 +258,7 @@ module unidadeProcessamento_test(
 		.Saida(DeslocamentoOut)
 	);
 	always_comb begin
-		LoadPC <= ((BranchOpOut & PCWriteCond) | PCWrite);
+		LoadPC = ((BranchOpOut & PCWriteCond) | PCWrite);
 	end
 	
 endmodule 
