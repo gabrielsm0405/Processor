@@ -13,7 +13,8 @@ module unidadeProcessamento_test(
 	output logic 	[6:0] Instr6_0,
 	output logic 	LoadMDR,
 	output logic 	[63:0] SignalExtendOut,
-	output logic 	[31:0] Instr31_0
+	output logic 	[31:0] Instr31_0,
+	output logic 	[63:0] LimitadorOut
 	);
 	
 	logic 	[63:0] RegAIn, RegBIn;
@@ -198,10 +199,16 @@ module unidadeProcessamento_test(
 		.Saida(MemDataRegOut)
 	);
 
+	Limitador Limitador(
+		.instrucao(Instr31_0),
+		.mdr(MemDataRegOut),
+		.Out(LimitadorOut)
+	);
+
 	Mux8 MuxMemToReg(
 		.Control(MemToReg),
 		.In1(RegALUOutOut),
-		.In2(MemDataRegOut),
+		.In2(LimitadorOut),
 		.In3(SignalExtendOut),
 		.In4(PCOut),
 		.In5(DeslocamentoOut),

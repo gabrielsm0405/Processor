@@ -18,6 +18,7 @@ module simulacao;
     logic [6:0] Instr6_0;
     logic [63:0] SignalExtendOut;
     logic [31:0] Instr31_0;
+    logic [63:0] LimitadorOut;
 
     unidadeProcessamento_test test (
         .clk(clk),        
@@ -32,13 +33,14 @@ module simulacao;
         .DataMemoryOut(DataMemoryOut),
         .MemDataRegOut(MemDataRegOut),
         .Instr6_0(Instr6_0),
-	.SignalExtendOut(SignalExtendOut),
-	.Instr31_0(Instr31_0)
+	    .SignalExtendOut(SignalExtendOut),
+	    .Instr31_0(Instr31_0),
+        .LimitadorOut(LimitadorOut)
 	); 
 
     initial begin 
         clk = 1'b1;
-        $monitor($time,"PC: %d, Estado: %d, SignalExtendIn: %b, SiginalExtendOut:  %b, OPCode: %b", Out, state, Instr31_0, SignalExtendOut, Instr6_0);  
+        $monitor("PC: %d, Estado: %d, LimitadorOut: %b", Out, state, LimitadorOut);  
         Reset = 1'b0;
         #(CLKPERIOD)
         Reset = 1'b1;
