@@ -87,12 +87,16 @@ module unidadeControle (
 		else begin
 			case(state)
 				init_state: begin
+					LoadIR <= 1;
+					state <= 31;
+				end
+				31: begin
 					PCWrite <= 1;
 					PCSrc <= 0;
 					ALUFunct <= 3'b001;
 					ALUSrcA <= 0;
 					ALUSrcB <= 2'b01;
-					LoadIR <= 1;
+					LoadIR <= 0;
 
 					PCWriteCond <= 0;
 					LoadRegA <= 0;
