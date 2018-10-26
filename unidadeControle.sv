@@ -1,6 +1,7 @@
 module unidadeControle (
 	input logic clk,
-	output logic PCSrc,
+	input logic Overflow,
+	output logic [1:0]PCSrc,
 	output logic [2:0] ALUFunct,
 	output logic [1:0] ALUSrcB,
 	output logic PCWrite,
@@ -19,7 +20,10 @@ module unidadeControle (
 	input logic[31:0] instruction,
 	output logic [4:0] state,
 	output logic [1:0] tam,
-	output logic [1:0]ShiftControl
+	output logic [1:0]ShiftControl,
+	output logic [1:0]SrcExc,
+	output logic LoadExc,
+	output logic causa
 );	
 
 	parameter init_state = 0;
@@ -49,6 +53,8 @@ module unidadeControle (
 	parameter jalr_opImmReg = 27;
 	parameter slti=28;
 	parameter slt=29;
+	parameter PcExc=30;
+	parameter OF=31;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -81,8 +87,14 @@ module unidadeControle (
 				LoadMDR <= 0;
 				DMemWrite <= 0;
 				IMemWrite <= 0;
-
-				state <= decod;
+				case(Overflow)
+					1:begin
+						state <= OF;
+					end
+					0:begin
+						state <= decod;
+					end 
+				endcase 
 			end
 			decod: begin
 				LoadRegA <= 1;
@@ -102,6 +114,11 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				tam <= 2'b00;
+				case(Overflow)
+					1:begin
+						state <= OF;
+					end 
+				endcase
 				case(instruction[6:0])
 					Break:
 					begin
@@ -255,6 +272,11 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				tam <= 2'b00;
+				case(Overflow)
+					1:begin
+						state <= OF;
+					end 
+				endcase
 				case (instruction[6:0]) // sai de offset e vai para umas das funÃ§Ãµes
 					Stype: //type sd
 					begin
@@ -291,7 +313,14 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				tam <= 2'b00;
-				state <= add_wreg;
+				case(Overflow)
+					1:begin
+						state <= OF;
+					end
+					0:begin
+						state <= add_wreg;
+					end 
+				endcase
 			end	
 			sub_reg: begin
 				ALUFunct <= 3'b010;
@@ -632,8 +661,14 @@ module unidadeControle (
 				IMemWrite <= 0;
 				LoadIR <= 0;
 				BranchOp <= 0;
-
-				state <= jal_jalr_offset;
+				case(Overflow)
+					1:begin
+						state <= OF;
+					end
+					0:begin
+						state <= jal_jalr_offset;
+					end 
+				endcase
 			end
 			slti: begin
 				PCWrite <= 0;
@@ -673,8 +708,27 @@ module unidadeControle (
 				WriteReg<=1;
 				state <= init_state;
 			end
+			OF:begin
+				LoadExc <= 1;
+				causa <= 1;
+				SrcExc <= 2'b10;
+				LoadMDR <= 1;
+				state <= PcExc;
+			end
 			excecao: begin
-				
+				LoadExc <= 1;
+				causa <= 0;
+				SrcExc <= 2'b01;
+				LoadMDR <= 1;
+				state <= PcExc;
+			end
+			PcExc: begin
+				PCWrite <= 1;
+				PCSrc <= 2'b10;
+				LoadExc<=0;
+				SrcExc <= 2'b00;
+				LoadMDR<=0;
+				state <= init_state;
 			end
 		 	default: begin
 		 		state <= 0;
