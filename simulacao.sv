@@ -8,7 +8,7 @@ module simulacao;
     logic Reset;
     logic [63:0]Out;
     logic [63:0]ALUOut;
-    logic [63:0] RegALUOutOut;
+    logic [63:0] RegALUOutOut; 
     logic DMemWrite;
     logic [2:0]ALUFunct;
     logic[4:0] state;
@@ -19,6 +19,7 @@ module simulacao;
     logic [63:0] SignalExtendOut;
     logic [31:0] Instr31_0;
     logic [63:0] LimitadorOut;
+    logic [63:0] StoreSelectOut;
 
     unidadeProcessamento_test test (
         .clk(clk),        
@@ -35,13 +36,14 @@ module simulacao;
         .Instr6_0(Instr6_0),
 	    .SignalExtendOut(SignalExtendOut),
 	    .Instr31_0(Instr31_0),
-        .LimitadorOut(LimitadorOut)
+        .LimitadorOut(LimitadorOut),
+        .StoreSelectOut(StoreSelectOut)
 	); 
 
     initial begin 
         clk = 1'b1;
-        $monitor("PC: %d, Estado: %d, LimitadorOut: %b", Out, state, LimitadorOut);  
-        Reset = 1'b0;
+        $monitor("PC: %d, Estado: %d, Instr31_0: %b, Reset: %b", Out, state, Instr31_0, Reset);  
+        Reset = 1'b1;
         #(CLKPERIOD)
         Reset = 1'b1;
         #(CLKPERIOD)

@@ -14,7 +14,8 @@ module unidadeProcessamento_test(
 	output logic 	LoadMDR,
 	output logic 	[63:0] SignalExtendOut,
 	output logic 	[31:0] Instr31_0,
-	output logic 	[63:0] LimitadorOut
+	output logic 	[63:0] LimitadorOut,
+	output logic 	[63:0] StoreSelectOut
 	);
 	
 	logic 	[63:0] RegAIn, RegBIn;
@@ -81,9 +82,10 @@ module unidadeProcessamento_test(
 		.LoadMDR(LoadMDR),
 		.BranchOp(BranchOp),
 		.PCWriteCond(PCWriteCond),
-		.instruction(IMemOut),
+		.instruction(Instr31_0),
 		.state(state),
-		.tam(tam)
+		.tam(tam),
+		.Reset(Reset)
 	);
 
 	Registrador64 pc(
@@ -186,7 +188,7 @@ module unidadeProcessamento_test(
 		.raddress(RegALUOutOut),
 		.waddress(RegALUOutOut),
 		.Clk(clk),
-		.Datain(RegBOut),
+		.Datain(StoreSelectOut),
 		.Dataout(DataMemoryOut),
 		.Wr(DMemWrite)
 	);
@@ -203,6 +205,13 @@ module unidadeProcessamento_test(
 		.instrucao(Instr31_0),
 		.mdr(MemDataRegOut),
 		.Out(LimitadorOut)
+	);
+
+	StoreSelect StoreSelect(
+		.Inst(Instr31_0),
+		.MemIn(MemDataRegOut),
+		.RegIn(RegBOut),
+		.Out(StoreSelectOut)
 	);
 
 	Mux8 MuxMemToReg(

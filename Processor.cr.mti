@@ -129,6 +129,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	Mux1
 
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/StoreSelect.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/StoreSelect.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module StoreSelect
+
+Top level modules:
+	StoreSelect
+
 } {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module Mux2
