@@ -85,7 +85,8 @@ module unidadeProcessamento_test(
 		.instruction(Instr31_0),
 		.state(state),
 		.tam(tam),
-		.Reset(Reset)
+		.Reset(Reset),
+		.ShiftControl(ShiftControl)
 	);
 
 	Registrador64 pc(

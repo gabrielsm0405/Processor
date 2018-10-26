@@ -196,7 +196,7 @@ module unidadeControle (
 												6'b000000: begin
 													state<=srli;
 												end // 6'b000000:
-												6'b01000: begin
+												6'b010000: begin
 													state<=srai;
 												end // 6'b01000:
 												default: begin
@@ -648,7 +648,7 @@ module unidadeControle (
 				end
 				jalr_opImmReg: begin
 					ALUSrcA <= 1;
-					ALUSrcB <= 2'b11;
+					ALUSrcB <= 2'b10;
 					ALUFunct <= 3'b001;
 					LoadALUOut <= 1;
 					
@@ -707,7 +707,7 @@ module unidadeControle (
 					state <= init_state;
 				end
 				excecao: begin
-					
+					state <= init_state;
 				end
 			 	default: begin
 			 		state <= 0;
