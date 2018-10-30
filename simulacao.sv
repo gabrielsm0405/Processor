@@ -11,7 +11,7 @@ module simulacao;
     logic [63:0] RegALUOutOut; 
     logic DMemWrite;
     logic [2:0]ALUFunct;
-    logic[4:0] state;
+    logic[5:0] state;
     logic[63:0]RegBOut;
     logic [63:0] DataMemoryOut;
     logic [63:0] MemDataRegOut;

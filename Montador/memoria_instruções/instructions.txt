@@ -1,6 +1,8 @@
-addi x9,x0,80
-addi x10,x0,85
-addi x8,x0,20
-sd x10,0(x9)
-ld x11,0(x8)
+sub x1,x1,x1
+addi x1,x1,1024
+jal x3,2
+nop
+add x1,x1,x1
+jalr x4,x3,0
+nop
 break

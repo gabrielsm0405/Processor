@@ -1,7 +1,8 @@
 module unidadeControle (
 	input logic clk,
 	input logic Reset,
-	output logic PCSrc,
+	input logic Overflow,
+	output logic [1:0]PCSrc,
 	output logic [2:0] ALUFunct,
 	output logic [1:0] ALUSrcB,
 	output logic PCWrite,
@@ -10,7 +11,7 @@ module unidadeControle (
 	output logic LoadRegB,
 	output logic LoadALUOut,
 	output logic WriteReg,
-	output logic [2:0] MemToReg,
+	output logic [3:0] MemToReg,
 	output logic LoadIR,
 	output logic IMemWrite,
 	output logic DMemWrite,
@@ -18,9 +19,11 @@ module unidadeControle (
 	output logic [1:0]BranchOp,
 	output logic PCWriteCond,
 	input logic[31:0] instruction,
-	output logic [4:0] state,
+	output logic [5:0] state,
 	output logic [1:0] tam,
-	output logic [1:0]ShiftControl
+	output logic [1:0]ShiftControl,
+	output logic LoadExc,
+	output logic [1:0]SrcExc
 );	
 
 	parameter init_state = 0;
@@ -50,6 +53,8 @@ module unidadeControle (
 	parameter jalr_opImmReg = 27;
 	parameter slti=28;
 	parameter slt=29;
+	parameter end_excecao=32;
+	parameter of=33;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -71,7 +76,9 @@ module unidadeControle (
 			ALUSrcA <= 0;
 			ALUSrcB <= 2'b00;
 			LoadIR <= 1;
-
+			SrcExc <= 0;
+			LoadExc <= 0;
+			
 			PCWriteCond <= 0;
 			LoadRegA <= 0;
 			LoadRegB <= 0;
@@ -97,7 +104,16 @@ module unidadeControle (
 					ALUSrcA <= 0;
 					ALUSrcB <= 2'b01;
 					LoadIR <= 0;
-
+					LoadExc <= 0;
+					SrcExc <= 0;
+					PCSrc <= 0;
+					
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= decod;
+					end
 					PCWriteCond <= 0;
 					LoadRegA <= 0;
 					LoadRegB <= 0;
@@ -107,8 +123,6 @@ module unidadeControle (
 					LoadMDR <= 0;
 					DMemWrite <= 0;
 					IMemWrite <= 0;
-
-					state <= decod;
 				end
 				decod: begin
 					LoadRegA <= 1;
@@ -117,7 +131,9 @@ module unidadeControle (
 					ALUSrcB <= 2'b11;
 					ALUFunct <= 3'b001;
 					LoadALUOut <=1;
-
+					SrcExc <= 0;
+					LoadExc <= 0;
+					
 					PCWrite <= 0;
 					PCWriteCond <= 0;
 					PCSrc <= 0;				
@@ -284,15 +300,31 @@ module unidadeControle (
 					case (instruction[6:0]) // sai de offset e vai para umas das funÃ§Ãµes
 						Stype: //type sd
 						begin
-							state <= read_mem; //calcula o OFFSET para o LOAD, STORE, E ADDI
+							if(Overflow)begin
+								state <= of;
+							end
+							else begin
+								state <= read_mem; //calcula o OFFSET para o LOAD, STORE, E ADDI
+							end	
 						end
 						Addi: //type i (ADDI)
 						begin
-							state <= add_wreg; //calcula o OFFSET para o LOAD, STORE, E ADDI
+							if(Overflow)begin
+								state <= of;
+							end
+							else begin
+								state <= add_wreg; //calcula o OFFSET para o LOAD, STORE, E ADDI
+							end
+							
 						end
 						Ld: //type i (LD)
 						begin
-							state <= read_mem; //calcula o OFFSET para o LOAD, STORE, E ADDI
+							if(Overflow)begin
+								state <= of;
+							end
+							else begin
+								state <= read_mem; //calcula o OFFSET para o LOAD, STORE, E ADDI
+							end
 						end
 						default: begin  
 							state <= excecao; // TODO - tratar excessão
@@ -317,7 +349,13 @@ module unidadeControle (
 					IMemWrite <= 0;
 					LoadIR <= 0;
 					tam <= 2'b00;
-					state <= add_wreg;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= add_wreg;
+					end	
+					
 				end	
 				sub_reg: begin
 					ALUFunct <= 3'b010;
@@ -337,7 +375,12 @@ module unidadeControle (
 					IMemWrite <= 0;
 					LoadIR <= 0;
 					tam <= 2'b00;
-					state <= add_wreg;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= add_wreg;
+					end	
 				end
 				and_reg: begin
 					ALUFunct <= 3'b011;
@@ -356,7 +399,12 @@ module unidadeControle (
 					IMemWrite <= 0;
 					LoadIR <= 0;
 					tam <= 2'b00;
-					state <= add_wreg;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= add_wreg;
+					end	
 				end
 				read_mem: begin
 					LoadMDR <= 1; // obs
@@ -407,7 +455,7 @@ module unidadeControle (
 					state<=init_state;
 				end
 				lui: begin
-					MemToReg <= 2'b10;
+					MemToReg <= 3'b010;
 					WriteReg <= 1;
 
 					PCWrite <= 0;
@@ -445,7 +493,12 @@ module unidadeControle (
 					IMemWrite <= 0;
 					LoadIR <= 0;
 					tam <= 2'b00;
-					state <= the_next_episode;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= the_next_episode;
+					end	
 			 	end // beq_wpc:
 			 	the_next_episode: begin
 			 		state <= init_state;
@@ -469,7 +522,12 @@ module unidadeControle (
 					IMemWrite <= 0;
 					LoadIR <= 0;
 					tam <= 2'b00;
-					state <= the_next_episode;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= the_next_episode;
+					end	
 			 	end // bne_wpc:
 			 	blt_wpc: begin
 			 		ALUFunct <= 3'b010;
@@ -490,7 +548,12 @@ module unidadeControle (
 					IMemWrite <= 0;
 					LoadIR <= 0;
 					tam <= 2'b00;
-					state <= the_next_episode;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= the_next_episode;
+					end	
 			 	end // blt_wpc:
 			 	bge_wpc: begin
 			 		ALUFunct <= 3'b010;
@@ -511,7 +574,12 @@ module unidadeControle (
 					IMemWrite <= 0;
 					LoadIR <= 0;
 					tam <= 2'b00;
-					state <= the_next_episode;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= the_next_episode;
+					end	
 			 	end // bge_wpc:
 			 	ld_wreg: begin
 			 		WriteReg <= 1;
@@ -665,8 +733,13 @@ module unidadeControle (
 					IMemWrite <= 0;
 					LoadIR <= 0;
 					BranchOp <= 0;
-
-					state <= jal_jalr_offset;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= jal_jalr_offset;
+					end	
+					
 				end
 				slti: begin
 					PCWrite <= 0;
@@ -685,7 +758,12 @@ module unidadeControle (
 					ALUFunct<=3'b010;
 					MemToReg<=3'b101;
 					WriteReg<=1;
-					state <= init_state;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= init_state;
+					end	
 				end
 				slt: begin
 					PCWrite <= 0;
@@ -704,9 +782,38 @@ module unidadeControle (
 					ALUFunct<=3'b010;
 					MemToReg<=3'b101;
 					WriteReg<=1;
-					state <= init_state;
+					if(Overflow)begin
+						state <= of;
+					end
+					else begin
+						state <= init_state;
+					end	
 				end
 				excecao: begin
+					ALUFunct <= 3'b010;
+					ALUSrcA <= 0;
+					ALUSrcB <= 2'b01;
+					LoadIR <= 0;
+					LoadExc <= 1;
+					SrcExc <= 2'b01;
+					PCWrite <= 0;
+					state <= end_excecao;
+				end
+				of: begin
+					
+					ALUFunct <= 3'b010;
+					ALUSrcA <= 0;
+					ALUSrcB <= 2'b01;
+					LoadIR <= 0;
+					LoadExc <= 1;
+					SrcExc <= 2'b10;
+					PCWrite <= 0;
+					state <= end_excecao;
+				end
+				end_excecao: begin
+					LoadExc <= 0;
+					PCSrc <= 2'b10;
+					PCWrite <= 1;
 					state <= init_state;
 				end
 			 	default: begin

@@ -5,7 +5,7 @@ module unidadeProcessamento_test(
 	output logic [2:0] ALUFunct,
 	output logic DMemWrite,
 	output logic [63:0] ALUOut,
-	output logic [4:0] state,
+	output logic [5:0] state,
 	output logic [63:0] RegALUOutOut,
 	output logic [63:0] RegBOut,
 	output logic [63:0] DataMemoryOut,
@@ -27,7 +27,7 @@ module unidadeProcessamento_test(
 	logic PCWrite;
 	logic PCWriteCond;
 	logic 	[31:0] IMemOut;
-	logic 	PCSrc; 
+	logic 	[1:0]PCSrc; 
 	 
 	logic 	[1:0] ALUSrcB;
 	logic 	ALUSrcA;
@@ -35,10 +35,17 @@ module unidadeProcessamento_test(
 	logic 	LoadRegB; 
 	logic 	LoadALUOut;
 	logic 	WriteReg;
-	logic 	[2:0]MemToReg;
+	logic 	[3:0]MemToReg;
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
-	 
+	
+	logic [63:0]ExtendExc;
+
+	logic [63:0]EPC;
+	logic [31:0]MuxSrcExcOut;
+	logic [1:0]SrcExc;
+	logic LoadExc;
+
 	logic	[1:0]BranchOp;
 	
 	logic 	[63:0] PCIn;
@@ -86,7 +93,10 @@ module unidadeProcessamento_test(
 		.state(state),
 		.tam(tam),
 		.Reset(Reset),
-		.ShiftControl(ShiftControl)
+		.ShiftControl(ShiftControl),
+		.LoadExc(LoadExc),
+		.SrcExc(SrcExc),
+		.Overflow(Overflow)
 	);
 
 	Registrador64 pc(
@@ -97,11 +107,26 @@ module unidadeProcessamento_test(
 		.Saida(PCOut)
 	);
 
+	Mux4 MuxSrcExc(
+		.Control(SrcExc),
+		.In1(PCOut[63:0]),
+		.In2(64'b0000000000000000000000000000000000000000000000000000000011111110),
+		.In3(64'b0000000000000000000000000000000000000000000000000000000011111111),
+		.Out(MuxSrcExcOut)
+	);
+
+	
+
 	Memoria32 IMem(
-		.raddress(PCOut[31:0]), 
+		.raddress(MuxSrcExcOut), 
 		.Clk(clk), 
 		.Dataout(IMemOut), 
 		.Wr(IMemWrite)
+	);
+
+	SignalExtendExc SignalExtendExc(
+		.Inst(IMemOut),
+		.Out(ExtendExc)
 	);
 
 	Instr_Reg_RISC_V InstructionRegister(
@@ -178,11 +203,20 @@ module unidadeProcessamento_test(
 		.Saida(RegALUOutOut)
 	);
 
-	Mux2 MuxPCSrc(
+	Mux4 MuxPCSrc(
 		.Control(PCSrc),
 		.In1(ALUOut),
 		.In2(RegALUOutOut),
+		.In3(ExtendExc),
 		.Out(PCIn)
+	);
+
+	Registrador64 SEPC(
+		.Clk(clk),
+		.Reset(Reset),
+		.Load(LoadExc),
+		.Entrada(ALUOut),
+		.Saida(EPC)
 	);
 
 	Memoria64 DataMemory(
