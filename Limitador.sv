@@ -1,44 +1,49 @@
-module Limitador(input logic [1:0]lim, output logic [63:0] Out, input logic [63:0] In);
+module Limitador(input logic [31:0]instrucao, output logic [63:0] Out, input logic [63:0] mdr);
 	always_comb  begin
-		case (lim)
-			2'b00: begin // ld
-				Out <= In;
-			end
-			2'b01: begin // lw
-				Out[31:0] <= In[31:0];
-				case(In[31]) 
-					1:
-					begin	
-						Out[63:32] <= 32'b11111111111111111111111111111111;
+		case (instrucao[6:0])
+			7'b0000011: begin // Tipo I
+				case (instrucao[14:12])
+					3'b011: begin //Ld
+						Out = mdr;
 					end
-				
-					default:
-					begin
-						Out[63:32] <= 32'b00000000000000000000000000000000;
+					3'b010: begin //Lw
+						Out[31:0] = mdr[31:0];
+						case(mdr[31])
+							1: begin
+								Out[63:32] = 32'b11111111111111111111111111111111;
+							end
+						
+							default: begin
+								Out[63:32] = 32'b00000000000000000000000000000000;
+							end
+						endcase
 					end
-				endcase			
-			end
-			2'b10: begin // lh
-				Out[15:0] <= In[15:0];
-				case(In[15]) 
-					1:
-					begin	
-						Out[63:16] <= 48'b111111111111111111111111111111111111111111111111;
+					3'b100: begin //Lbu
+						Out[7:0] = mdr[7:0];
+						Out[63:8] = 56'b00000000000000000000000000000000000000000000000000000000;
 					end
-					
-					default:
-					begin
-						Out[63:16] <= 48'b000000000000000000000000000000000000000000000000;
+					3'b001: begin //Lh
+						Out[15:0] = mdr[15:0];
+						case(mdr[15])
+							1:
+							begin
+								Out[63:16] = 48'b111111111111111111111111111111111111111111111111;
+							end
+							
+							default:
+							begin
+								Out[63:16] = 48'b000000000000000000000000000000000000000000000000;
+							end
+						endcase
 					end
-				endcase			
-			end
-			2'b11: begin // lbu
-				Out[7:0] <= In[7:0];
-				Out[63:8] <= 56'b00000000000000000000000000000000000000000000000000000000;			
+					default: begin
+						Out = mdr;
+					end
+				endcase
 			end
 			default:begin
-				Out <= In;
+				Out = mdr;
 			end
-		endcase		
+		endcase
 	end
 endmodule

@@ -10,7 +10,7 @@ module unidadeControle (
 	output logic LoadRegB,
 	output logic LoadALUOut,
 	output logic WriteReg,
-	output logic [2:0] MemToReg,
+	output logic [3:0] MemToReg,
 	output logic LoadIR,
 	output logic IMemWrite,
 	output logic DMemWrite,
@@ -18,7 +18,7 @@ module unidadeControle (
 	output logic [1:0]BranchOp,
 	output logic PCWriteCond,
 	input logic[31:0] instruction,
-	output logic [4:0] state,
+	output logic [5:0] state,
 	output logic [1:0] tam,
 	output logic [1:0]ShiftControl,
 	output logic LoadExc,
@@ -52,6 +52,7 @@ module unidadeControle (
 	parameter jalr_opImmReg = 27;
 	parameter slti=28;
 	parameter slt=29;
+	parameter end_excecao=32;
 
 	parameter Rtype = 7'b0110011;
 	parameter Stype = 7'b0100011;
@@ -73,7 +74,9 @@ module unidadeControle (
 			ALUSrcA <= 0;
 			ALUSrcB <= 2'b00;
 			LoadIR <= 1;
-
+			SrcExc <= 0;
+			LoadExc <= 0;
+			
 			PCWriteCond <= 0;
 			LoadRegA <= 0;
 			LoadRegB <= 0;
@@ -102,7 +105,7 @@ module unidadeControle (
 					LoadExc <= 0;
 					SrcExc <= 0;
 					PCSrc <= 0;
-
+				
 					PCWriteCond <= 0;
 					LoadRegA <= 0;
 					LoadRegB <= 0;
@@ -122,7 +125,9 @@ module unidadeControle (
 					ALUSrcB <= 2'b11;
 					ALUFunct <= 3'b001;
 					LoadALUOut <=1;
-
+					SrcExc <= 0;
+					LoadExc <= 0;
+					
 					PCWrite <= 0;
 					PCWriteCond <= 0;
 					PCSrc <= 0;				
@@ -412,7 +417,7 @@ module unidadeControle (
 					state<=init_state;
 				end
 				lui: begin
-					MemToReg <= 2'b10;
+					MemToReg <= 3'b010;
 					WriteReg <= 1;
 
 					PCWrite <= 0;

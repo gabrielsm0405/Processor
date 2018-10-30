@@ -1,31 +1,9 @@
-C:/Users/phos/Downloads/Processor-master/Processor-master/ShiftLeft.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/ShiftLeft.sv
+C:/Users/gsm3/Desktop/Processor-master/Mux8.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Mux8.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ShiftLeft
+-- Compiling module Mux8
 
 Top level modules:
-	ShiftLeft
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Registrador64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Registrador64.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity Registrador64
--- Compiling architecture behavioral_arch of Registrador64
-
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/SignalExtend.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/SignalExtend.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module SignalExtend
-
-Top level modules:
-	SignalExtend
-
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux4.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux4.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Mux4
-
-Top level modules:
-	Mux4
+	Mux8
 
 } {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/mux.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/mux.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -41,71 +19,7 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	ramOnChip
 
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Mux2
-
-Top level modules:
-	Mux2
-
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ShiftLeft.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ShiftLeft.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ShiftLeft
-
-Top level modules:
-	ShiftLeft
-
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/mux.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/mux.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module mux
-
-Top level modules:
-	mux
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux4.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux4.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Mux4
-
-Top level modules:
-	Mux4
-
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Banco_reg64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Banco_reg64.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity Banco_reg64
--- Compiling architecture behavioral_arch of Banco_reg64
-
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux1.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux1.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Mux1
-
-Top level modules:
-	Mux1
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria32.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Memoria32
-
-Top level modules:
-	Memoria32
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeControle.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeControle.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module unidadeControle
-
-Top level modules:
-	unidadeControle
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/processor.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/processor.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module uc
-
-Top level modules:
-	uc
-
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ula64.vhd
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/gsm3/Desktop/Processor-master/ula64.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -114,42 +28,28 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity Ula64
 -- Compiling architecture behavioral of Ula64
 
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/antigo_UC.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/antigo_UC.sv
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Mux3.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Mux3.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module antigo_UC
+-- Compiling module Mux3
 
 Top level modules:
-	antigo_UC
+	Mux3
 
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux8.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux8.sv
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ShiftLeft.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ShiftLeft.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Mux8
+-- Compiling module ShiftLeft
 
 Top level modules:
-	Mux8
+	ShiftLeft
 
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Memoria32.sv
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux4.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux4.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Memoria32
+-- Compiling module Mux4
 
 Top level modules:
-	Memoria32
+	Mux4
 
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux1.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux1.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Mux1
-
-Top level modules:
-	Mux1
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64_test.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64_test.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Memoria64_test
-
-Top level modules:
-	Memoria64_test
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/gsm3/Desktop/Processor-master/Instr_Reg_RISC_V.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -179,6 +79,250 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	uc
 
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64
+
+Top level modules:
+	Memoria64
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/antigo_UC.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/antigo_UC.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module antigo_UC
+
+Top level modules:
+	antigo_UC
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/simulacao.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/simulacao.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module simulacao
+
+Top level modules:
+	simulacao
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Deslocamento.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Deslocamento.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Deslocamento
+
+Top level modules:
+	Deslocamento
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/ShiftLeft.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/ShiftLeft.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftLeft
+
+Top level modules:
+	ShiftLeft
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Registrador64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Registrador64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Registrador64
+-- Compiling architecture behavioral_arch of Registrador64
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Mux1.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Mux1.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux1
+
+Top level modules:
+	Mux1
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/StoreSelect.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/StoreSelect.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module StoreSelect
+
+Top level modules:
+	StoreSelect
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux2
+
+Top level modules:
+	Mux2
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/mux.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/mux.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module mux
+
+Top level modules:
+	mux
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/ramOnChip64.v {1 {vlog -work work -stats=none C:/Users/gsm3/Desktop/Processor-master/ramOnChip64.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip64
+
+Top level modules:
+	ramOnChip64
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Registrador64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/gsm3/Desktop/Processor-master/Registrador64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Registrador64
+-- Compiling architecture behavioral_arch of Registrador64
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeControle.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeControle.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module unidadeControle
+
+Top level modules:
+	unidadeControle
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ula64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity Ula64
+-- Compiling architecture behavioral of Ula64
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Memoria32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria32
+
+Top level modules:
+	Memoria32
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64_test.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64_test
+
+Top level modules:
+	Memoria64_test
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg_RISC_V
+-- Compiling architecture behavioral_arch of Instr_Reg_RISC_V
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/SignalExtend.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/SignalExtend.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module SignalExtend
+
+Top level modules:
+	SignalExtend
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Mux4.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Mux4.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux4
+
+Top level modules:
+	Mux4
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/DivImm.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/DivImm.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DivImm
+
+Top level modules:
+	DivImm
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/unidadeProcessamento_test.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/unidadeProcessamento_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module unidadeProcessamento_test
+
+Top level modules:
+	unidadeProcessamento_test
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/mux.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/mux.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module mux
+
+Top level modules:
+	mux
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/ShiftLeft.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/ShiftLeft.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftLeft
+
+Top level modules:
+	ShiftLeft
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Banco_reg64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/gsm3/Desktop/Processor-master/Banco_reg64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Banco_reg64
+-- Compiling architecture behavioral_arch of Banco_reg64
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Deslocamento.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Deslocamento.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Deslocamento
+
+Top level modules:
+	Deslocamento
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/DivImm.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/DivImm.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DivImm
+
+Top level modules:
+	DivImm
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux1.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux1.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux1
+
+Top level modules:
+	Mux1
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Memoria32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria32
+
+Top level modules:
+	Memoria32
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/processor.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/processor.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module uc
+
+Top level modules:
+	uc
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/antigo_UC.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/antigo_UC.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module antigo_UC
+
+Top level modules:
+	antigo_UC
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/ramOnChip32.v {1 {vlog -work work -stats=none C:/Users/gsm3/Desktop/Processor-master/ramOnChip32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip
+
+Top level modules:
+	ramOnChip
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux8.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux8.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux8
+
+Top level modules:
+	Mux8
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/unidadeProcessamento_test.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/unidadeProcessamento_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module unidadeProcessamento_test
+
+Top level modules:
+	unidadeProcessamento_test
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Mux2.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Mux2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux2
+
+Top level modules:
+	Mux2
+
 } {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ramOnChip64.v {1 {vlog -work work -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/ramOnChip64.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module ramOnChip64
@@ -186,19 +330,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	ramOnChip64
 
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeProcessamento_test.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeProcessamento_test.sv
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Limitador.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Limitador.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module unidadeProcessamento_test
+-- Compiling module Limitador
 
 Top level modules:
-	unidadeProcessamento_test
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria64.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Memoria64
-
-Top level modules:
-	Memoria64
+	Limitador
 
 } {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Registrador64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Registrador64.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -208,12 +345,83 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity Registrador64
 -- Compiling architecture behavioral_arch of Registrador64
 
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/antigo_UC.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/antigo_UC.sv
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux3.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux3.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module antigo_UC
+-- Compiling module Mux3
 
 Top level modules:
-	antigo_UC
+	Mux3
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Memoria64.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64
+
+Top level modules:
+	Memoria64
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip64.v {1 {vlog -work work -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip64.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ramOnChip64
+
+Top level modules:
+	ramOnChip64
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux4.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux4.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux4
+
+Top level modules:
+	Mux4
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/SignalExtend.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/SignalExtend.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module SignalExtend
+
+Top level modules:
+	SignalExtend
+
+} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Banco_reg64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Banco_reg64.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Banco_reg64
+-- Compiling architecture behavioral_arch of Banco_reg64
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria32.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Memoria32.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria32
+
+Top level modules:
+	Memoria32
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/Memoria64.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Memoria64
+
+Top level modules:
+	Memoria64
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux1.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux1.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mux1
+
+Top level modules:
+	Mux1
+
+} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeProcessamento_test.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/unidadeProcessamento_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module unidadeProcessamento_test
+
+Top level modules:
+	unidadeProcessamento_test
+
+} {} {}} C:/Users/gsm3/Desktop/Processor-master/simulacao.sv {1 {vlog -work work -sv -stats=none C:/Users/gsm3/Desktop/Processor-master/simulacao.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module simulacao
+
+Top level modules:
+	simulacao
 
 } {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/ula64.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/ula64.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -224,40 +432,12 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity Ula64
 -- Compiling architecture behavioral of Ula64
 
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Mux3.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Mux3.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Mux3
-
-Top level modules:
-	Mux3
-
 } {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Limitador.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Limitador.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module Limitador
 
 Top level modules:
 	Limitador
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/simulacao.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/simulacao.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module simulacao
-
-Top level modules:
-	simulacao
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/DivImm.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/DivImm.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module DivImm
-
-Top level modules:
-	DivImm
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/Deslocamento.sv {1 {vlog -work work -sv -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/Deslocamento.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Deslocamento
-
-Top level modules:
-	Deslocamento
 
 } {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Instr_Reg_RISC_V.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -274,32 +454,11 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	ramOnChip
 
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/unidadeProcessamento_test.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/unidadeProcessamento_test.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module unidadeProcessamento_test
-
-Top level modules:
-	unidadeProcessamento_test
-
-} {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Memoria64.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Memoria64.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Memoria64
-
-Top level modules:
-	Memoria64
-
 } {} {}} C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux2.sv {1 {vlog -work work -sv -stats=none C:/Users/rcrs4/Desktop/Processor-master/Processor-master/Mux2.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module Mux2
 
 Top level modules:
 	Mux2
-
-} {} {}} C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip64.v {1 {vlog -work work -stats=none C:/Users/phos/Downloads/Processor-master/Processor-master/ramOnChip64.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ramOnChip64
-
-Top level modules:
-	ramOnChip64
 
 } {} {}}

@@ -5,7 +5,7 @@ module unidadeProcessamento_test(
 	output logic [2:0] ALUFunct,
 	output logic DMemWrite,
 	output logic [63:0] ALUOut,
-	output logic [4:0] state,
+	output logic [5:0] state,
 	output logic [63:0] RegALUOutOut,
 	output logic [63:0] RegBOut,
 	output logic [63:0] DataMemoryOut,
@@ -35,13 +35,13 @@ module unidadeProcessamento_test(
 	logic 	LoadRegB; 
 	logic 	LoadALUOut;
 	logic 	WriteReg;
-	logic 	[2:0]MemToReg;
+	logic 	[3:0]MemToReg;
 	logic 	LoadIR; 
 	logic 	IMemWrite; 
 	
 	logic [63:0]EPC;
 	logic [31:0]MuxSrcExcOut;
-	logic SrcExc;
+	logic [1:0]SrcExc;
 	logic LoadExc;
 
 	logic	[1:0]BranchOp;
@@ -104,11 +104,11 @@ module unidadeProcessamento_test(
 		.Saida(PCOut)
 	);
 
-	Mux4 Srcexc(
-		.Control(Srcexc),
-		.In1(PCOut[31:0]),
-		.In2(32'b00000000000000000000000011111111),
-		.In3(32'b00000000000000000000000011111110),	
+	Mux4 MuxSrcExc(
+		.Control(SrcExc),
+		.In1(PCOut[63:0]),
+		.In2(64'b0000000000000000000000000000000000000000000000000000000011111110),
+		.In3(64'b0000000000000000000000000000000000000000000000000000000011111111),	
 		.Out(MuxSrcExcOut)
 	);
 
@@ -201,7 +201,7 @@ module unidadeProcessamento_test(
 		.Out(PCIn)
 	);
 
-	Registrador64 EPC(
+	Registrador64 SEPC(
 		.Clk(clk),
 		.Reset(Reset),
 		.Load(LoadExc),
