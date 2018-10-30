@@ -718,12 +718,12 @@ module unidadeControle (
 				end
 				excecao: begin
 					LoadExc <= 1;
-					SrcExc <= 2'b01;
-					PCSrc <= 2'b10;
 					state <= end_excecao;
 				end
 				end_excecao: begin
 					LoadExc <= 0;
+					SrcExc <= 2'b01;
+					PCSrc <= 2'b10;
 					PCWrite <= 1;
 					state <= init_state;
 				end

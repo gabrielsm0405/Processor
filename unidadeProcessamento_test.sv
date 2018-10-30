@@ -197,7 +197,7 @@ module unidadeProcessamento_test(
 		.Control(PCSrc),
 		.In1(ALUOut),
 		.In2(RegALUOutOut),
-		.In3(IMemOut),
+		.In3(SignalExtendOut),
 		.Out(PCIn)
 	);
 
